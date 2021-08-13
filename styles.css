@@ -1,0 +1,307 @@
+/* ----------------------- INDEX ----------------------- */
+
+body {
+    background-color: rgb(170, 170, 170);
+    background-image: url("https://www.transparenttextures.com/patterns/little-pluses.png");
+}
+
+
+/* navbar */
+
+.navbar-whole-class {
+    padding: 1% 5%;
+    background-color: #031d44;
+    background-image: url("https://www.transparenttextures.com/patterns/vichy.png");
+}
+
+
+/* nav-bar  effective*/
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    margin-bottom: 2px;
+}
+
+.nav-link {
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    padding: 20px 0px;
+    margin: 0px 20px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.75;
+}
+
+.nav-link::before {
+    transition: 300ms;
+    height: 5px;
+    content: "";
+    position: absolute;
+    background-color: white;
+    color: white;
+}
+
+.nav-link-ltr::before {
+    width: 0%;
+    bottom: 10px;
+}
+
+.nav-link-ltr:hover::before {
+    width: 50%;
+}
+
+#active-underline {
+    color: white;
+}
+
+.navbar-dark:hover .navbar-nav:hover .nav-link:hover {
+    color: whitesmoke;
+}
+
+.navbar-dark .navbar-brand {
+    color: wheat;
+    font-family: 'PT Serif', serif
+}
+
+@media (max-width: 990px) {
+    .nav-link {
+        margin: 0 0;
+    }
+    .quotes {
+        padding: 0 0;
+    }
+}
+
+
+/* home-tip-section */
+
+#home-body {
+    padding: 5% 10%;
+    padding-bottom: 0;
+}
+
+h3 {
+    font-family: 'Crimson Pro';
+    cursor: pointer;
+}
+
+.stepbody {
+    padding: 5% 15% 0;
+}
+
+.stepbody-div {
+    background-color: #C7D3D4FF;
+    background-image: url("https://www.transparenttextures.com/patterns/vichy.png");
+    border-radius: 50px;
+}
+
+.step-heading-p {
+    font-size: 35px;
+    font-family: 'Crimson Pro';
+    margin-bottom: 0;
+}
+
+.step-p-div {
+    text-align: center;
+}
+
+.active {
+    color: #FEE715FF;
+    border-radius: 10px;
+    border-bottom: 3px solid #FEE715FF;
+    background-color: #101820FF;
+}
+
+.step-context {
+    padding: 5% 15%;
+    padding-top: 0;
+    font-family: 'Dosis';
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.deactive {
+    display: none;
+}
+
+.step-context-remove {
+    display: none;
+}
+
+h4 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+li {
+    font-weight: normal;
+}
+
+
+/* quotes */
+
+.quotes {
+    padding: 0% 15%;
+    padding-right: 0;
+    text-align: center;
+    font-family: 'Arvo';
+    color: #003079;
+}
+
+.date {
+    text-align: center;
+    font-weight: normal;
+    padding: 10% 0;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-family: 'Playfair Display';
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (max-width: 990px) {
+    .quotes {
+        padding: 0 0;
+    }
+}
+
+
+/* help */
+
+.help {
+    padding: 5% 10%;
+    padding-bottom: 0%;
+}
+
+.material-icons {
+    padding: 2% 2%;
+    font-size: 2rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 40%;
+    margin-bottom: 5%;
+}
+
+h4 {
+    color: #00203FFF;
+}
+
+h5 {
+    font-family: 'Lato';
+    color: black;
+}
+
+.icon {
+    padding: 5% 0;
+}
+
+
+/* footer-section */
+
+.cpy-footer {
+    text-align: center;
+}
+
+
+/* ----------------------- LOGIN ----------------------- */
+
+.my-login-page .card-wrapper {
+    width: 400px;
+}
+
+.card-wrapper {
+    padding-top: 10%;
+}
+
+.card {
+    border-color: transparent;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+    border-radius: 5%;
+}
+
+.card.fat {
+    padding: 10px;
+}
+
+.card .card-title {
+    margin-bottom: 30px;
+}
+
+.form-control {
+    border-width: 2.3px;
+}
+
+.form-group label {
+    width: 100%;
+}
+
+.btn.btn-block {
+    padding: 12px 10px;
+}
+
+.login-whole {
+    padding: 3% 30%;
+    padding-bottom: 2%;
+}
+
+@media screen and (max-width: 425px) {
+    .card-wrapper {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .card.fat {
+        padding: 0;
+    }
+    .card.fat .card-body {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .login-whole {
+        padding: 5% 10%;
+    }
+}
+
+
+/* ----------------------- ENROLL ----------------------- */
+
+
+/* heading */
+
+.enr-heading-button,
+.enr-content-body {
+    text-align: center;
+    padding: 5% 30% 2%;
+}
+
+@media screen and (max-width: 720px) {
+    .enr-heading-button,
+    .enr-content-body {
+        padding: 5% 15% 2%;
+    }
+}
+
+.heading-button1,
+.heading-button2 {
+    text-align: center;
+    display: inline;
+}
+
+.Enroll-heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+
+/* Nominee */
