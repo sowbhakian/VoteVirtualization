@@ -193,7 +193,7 @@ h4 {
 }
 
 h5 {
-    font-family: 'Lato';
+    font-family: 'Dosis';
     color: black;
 }
 
@@ -241,7 +241,7 @@ h5 {
     width: 100%;
 }
 
-.btn.btn-block {
+.btn-index {
     padding: 12px 10px;
 }
 
@@ -278,23 +278,9 @@ h5 {
 
 /* heading */
 
-.enr-heading-button,
-.enr-content-body {
+.enr-heading-button {
     text-align: center;
-    padding: 5% 30% 2%;
-}
-
-@media screen and (max-width: 720px) {
-    .enr-heading-button,
-    .enr-content-body {
-        padding: 5% 15% 2%;
-    }
-}
-
-.heading-button1,
-.heading-button2 {
-    text-align: center;
-    display: inline;
+    padding: 5% 30% 0%;
 }
 
 .Enroll-heading {
@@ -303,5 +289,115 @@ h5 {
     font-size: 2rem;
 }
 
+.enr-btn-start {
+    margin-top: 10%;
+}
+
+
+/* part-display */
+
+.btn-part-display {
+    margin: 2% 0;
+    margin-bottom: 3%;
+}
+
+.btn-part-1,
+.btn-part-2,
+.btn-part-3 {
+    height: 5px;
+    border-radius: 50px;
+    background-color: rgba(56, 79, 121, 0.356);
+}
+
+.addblue {
+    background-color: rgb(25, 106, 255);
+}
+
+.enr-part-cls {
+    font-size: x-large;
+    font-family: 'Lato';
+}
+
 
 /* Nominee */
+
+.enr-content-body {
+    text-align: center;
+    padding: 2% 25%;
+}
+
+.enr-input-body {
+    padding: 3% 15%;
+    border-radius: 25px;
+}
+
+.form-control {
+    margin: 2.5% 3%;
+}
+
+.enr-btn-pre {
+    padding: 1% 2%;
+}
+
+.enr-btn-next {
+    padding: 1% 4.5%;
+}
+
+.enr-btn-div {
+    margin: 3% 0;
+}
+
+.heading-n-v {
+    font-size: 2rem;
+    font-family: 'PT Sans Narrow';
+}
+
+
+/* symbols */
+
+.symbols {
+    block-size: 25%;
+}
+
+.symbol-inp-div {
+    margin: 2% 0;
+}
+
+.fa-check-double {
+    background-color: rgb(7, 139, 255);
+    padding: 5% 5%;
+    border-radius: 50%;
+}
+
+
+/* end-enroll */
+
+.end-enroll {
+    margin: 12% 0;
+}
+
+.Succ-enr {
+    margin-top: 4%;
+}
+
+@media screen and (max-width: 720px) {
+    .enr-heading-button {
+        padding: 5% 15% 2%;
+    }
+    .enr-content-body {
+        margin: 2% 5%;
+        padding: 0 0;
+    }
+    .enr-input-body {
+        padding: 2% 5%;
+    }
+    .enr-btn-start {
+        margin-top: 30%;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .enr-btn-start {
+        margin-top: 40%;
+    }
+}

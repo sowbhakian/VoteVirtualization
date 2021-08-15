@@ -40,16 +40,24 @@ function enrollshow(user) {
 
     } else {
         console.log("Enroll Toggle Error " + user);
-        s
+
     }
+    $("#enr-start").addClass("deactive")
 }
 
 // nominee
-// $('#smartwizard').smartWizard({
-//     selected: 0,
-//     theme: 'arrows',
-//     autoAdjustHeight: true,
-//     transitionEffect: 'fade',
-//     showStepURLhash: false,
+function next1() {
+    $("#part1").addClass("deactive");
+    $("#part2").removeClass("deactive");
+    $("#btn2-head").addClass("addblue")
+    $("#enr-part-head").text("Party Details")
+}
 
-// });
+function pre1() {
+    $("#part1").removeClass("deactive");
+    $("#part2").addClass("deactive");
+    $("#btn2-head").removeClass("addblue")
+    $("#enr-part-head").text("Personal Details")
+}
+
+// voters
