@@ -20,6 +20,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
 
     <!-- google icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -35,24 +37,23 @@
 <body>
 
     <!-- sample web - https://www.directpoll.com/c?XDVhEtVGvHyLSiAfzmIuN9OoFRKsIU2dD -->
-
     <section id="Nav-bar-section">
         <nav class="navbar navbar-expand-lg navbar-dark navbar-whole-class ">
             <div class="container">
                 <p class="navbar-brand"><i class="fab fa-dyalog"></i><i class="fab fa-vuejs"></i> DeployVotes</p>
                 <!-- makes the text right  -->
-                <div class="text-right w-100">
-                    <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="w-25 text-right ">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <!-- phone view - right  -->
                     <div class="navbar-nav mx-auto text-right">
-                        <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">Home</a>
+                        <a href="#" class="nav-link nav-link-ltr textinnav ">Home</a>
                         <a href="enroll.html" class="nav-link nav-link-ltr textinnav ">Enroll</a>
-                        <a href="signin.html" class="nav-link nav-link-ltr textinnav ">Login</a>
-                        <a href="signup.html" class="nav-link nav-link-ltr textinnav ">Signup</a>
+                        <a href="signin.html" class="nav-link nav-link-ltr textinnav " id="active-underline">Login</a>
+                        <a href="signup.html" class="nav-link nav-link-ltr textinnav ">signup</a>
                     </div>
                 </div>
             </div>
@@ -60,8 +61,33 @@
     </section>
 
     <section id="home-body">
+        <!-- Help  -->
+        <div id="help-flip" class="row help text-center">
+            <div id="asd" class="col-lg-4 col-md-4 col-sm-4 icon">
+                <i class="material-icons">how_to_reg</i>
+                <h4 class="text-icon">Enroll Last Date</h4>
+                <h5 class="text-icon">14th August 2021</h5>
+                <h5 class="text-icon">09:00 AM-06:00 PM</h5>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 icon">
+                <i class="material-icons md-36">email</i>
+                <h4> Email</h4>
+                <a href="mailto:sowbhakian.shansan@gmail.com">
+                    <h5 class="text-icon">DVotes@gmail.com</h5>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 icon">
+                <i class="material-icons">alarm_on</i>
+                <h4 class="text-icon">Voting Date</h4>
+                <h5 class="text-icon">14th September 2021 </h5>
+                <h5 class="text-icon">09:00 AM-06:00 PM</h5>
+            </div>
+
+        </div>
+
+        <!-- step-section -->
         <div class="row">
-            <div class="col-lg-6 stepbody-div">
+            <div id="index-flip-steps" class="col-lg-6 stepbody-div">
                 <div class="step-p-div">
                     <p class="step-heading-p">Steps to be done !</p>
                 </div>
@@ -82,6 +108,7 @@
                         <a href="signup.html">
                             <h4 class="text-center">Create an account </h4>
                         </a>
+                        <li>Go to Sign up section</li>
                         <li>Enter mail id</li>
                         <li>Enter password</li>
                         <li>Click submit </li>
@@ -89,19 +116,21 @@
                     </ul>
                 </div>
                 <ul id="step-p2" class="step-context deactive">
-                    <h4 class="text-center">2Create an account </h4>
-                    <li>1enter mail id</li>
-                    <li>1enter password</li>
-                    <li>1Click submit </li>
-                    <li>1Successfully created an account!</li>
+                    <h4 class="text-center">Enrollment </h4>
+                    <li>Go to Enroll section</li>
+                    <li>Click on the respective section </li>
+                    <li>Enter your details in column</li>
+                    <li>Click submit</li>
+                    <li>Successfully enrolled!</li>
                 </ul>
 
                 <ul id="step-p3" class="step-context deactive">
-                    <h4 class="text-center">3Create an account </h4>
-                    <li>2enter mail id</li>
-                    <li>2enter password</li>
-                    <li>2Click submit </li>
-                    <li>2Successfully created an account!</li>
+                    <h4 class="text-center">Voting </h4>
+                    <li>Enter mail id</li>
+                    <li>Enter password</li>
+                    <li>Click submit </li>
+                    <li>Vote for your candidate </li>
+                    <li>Successfully Voted</li>
                 </ul>
 
             </div>
@@ -113,41 +142,20 @@
             </div>
 
         </div>
-        </div>
-        <div class="row help text-center">
-            <div class="col-lg-4 col-md-4 col-sm-4 icon">
-                <i class="material-icons">how_to_reg</i>
-                <h4>Enroll Last Date</h4>
-                <h5>14th August 2021</h5>
-                <h5>09:00 AM-06:00 PM</h5>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 icon">
-                <i class="material-icons">alarm_on</i>
-                <h4>Voting Date</h4>
-                <h5>14th September 2021 </h5>
-                <h5>09:00 AM-06:00 PM</h5>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 icon">
-                <i class="material-icons md-36">email</i>
-                <h4> Email</h4>
-                <a href="mailto:sowbhakian.shansan@gmail.com">
-                    <h5>DeployVotes@gmail.com</h5>
-                </a>
-            </div>
-        </div>
 
-        <!-- footer-section -->
-        <section id="footer-section">
-            <footer>
-                <p class="cpy-footer"> <i class="far fa-copyright"></i> 2021 Sowbhakian
-                </p>
-            </footer>
-        </section>
+    </section>
+    <!-- footer-section -->
+    <section id="footer-section">
+        <footer>
+            <p class="cpy-footer"> <i class="far fa-copyright"></i> 2021 Sowbhakian
+            </p>
+        </footer>
+    </section>
 
 
-        <!-- jquery  -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="app.js"></script>
+    <!-- jquery  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
