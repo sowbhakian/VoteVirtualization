@@ -66,36 +66,35 @@
                     <div class="switch-form">
                         <div class="row">
                             <div id="signupBar" class="col-lg-6 col-md-6 col-sm-6 col-xs-6  switch-bar round-edge-lt white">
-                                <h6 class="switch-text" onclick=signup()>Sign up</h6>
+                                <h6 id="signupTxt" class="switch-text text-decoration-underline" onclick=signup()>Sign up</h6>
                             </div>
                             <div id="loginBar" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 round-edge switch-bar  round-edge-rt">
-                                <h6 class="switch-text" onclick=login()>Login</h6>
+                                <h6 id="loginTxt" class="switch-text" onclick=login()>Login</h6>
                             </div>
-                            <hr class="w-70">
                         </div>
                     </div>
 
                     <!-- signupForm -->
                     <div id="signupForm">
-                        <form action="" method="POST" class="my-login-validation">
-                            <div class="form-group">
+                        <form action="/signup" method="POST" class="my-login-validation">
+                            <div class="form-group formTopCls">
                                 <label for="name">Name</label>
-                                <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                <input type="text" class="form-control" name="name" required autofocus>
                             </div>
 
                             <div class="form-group">
                                 <label for="email">E-Mail Address</label>
-                                <input id="email" type="email" class="form-control" name="email" required>
+                                <input type="email" class="form-control" name="email" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input id="password" type="password" class="form-control" name="password" required data-eye>
+                                <input type="password" class="form-control" name="password" required data-eye>
                             </div>
 
                             <div class="form-group">
                                 <label for="ph">Phone No.</label>
-                                <input id="ph" type="number" class="form-control" name="phonenumber" required data-eye>
+                                <input type="number" class="form-control" name="phonenumber" required data-eye>
                             </div>
 
                             <div class="form-group">
@@ -119,16 +118,16 @@
 
                     <!-- loginForm -->
                     <div id="loginForm" class="deactive">
-                        <form action="" method="POST" class="my-login-validation" novalidate="">
+                        <form action="/login" method="POST" class="my-login-validation" novalidate="">
 
-                            <div class="form-group">
+                            <div class="form-group formTopCls">
                                 <label for="email">E-Mail Address</label>
-                                <input id="email" type="email" class="form-control" name="email" required>
+                                <input type="email" class="form-control" name="email" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input id="password" type="password" class="form-control" name="password" required data-eye>
+                                <input type="password" class="form-control" name="password" required data-eye>
                             </div>
 
                             <div class="form-group m-0">

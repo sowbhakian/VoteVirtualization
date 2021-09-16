@@ -18,6 +18,7 @@
   "homepage": "https://github.com/sowbhakian/2.DeployVotes#readme",
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^6.0.6"
   }
 }

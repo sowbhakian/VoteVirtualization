@@ -250,11 +250,6 @@ h5 {
     margin-bottom: 30px;
 }
 
-
-/* .form-control {
-    border-width: 2.3px;
-} */
-
 .form-group label {
     width: 100%;
 }
@@ -305,12 +300,14 @@ h5 {
 #signupBar :hover {
     color: #00076d;
     font-size: 2rem;
+    padding: 0 0;
 }
 
 .switch-text {
     font-family: 'PT Sans Narrow';
     font-weight: bolder;
     font-size: 1.5rem;
+    padding: 2% 0;
 }
 
 .white {
@@ -326,12 +323,23 @@ h5 {
     border-top-right-radius: 50px;
 }
 
+.formTopCls {
+    margin-top: 5%;
+}
+
 @media screen and (max-width: 576px) {
     .vl {
         border-left: none;
     }
     .switch-bar {
         padding: 0.5% 0;
+    }
+    .round-edge-lt {
+        border-top-right-radius: 50px;
+    }
+    .round-edge-rt {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
     }
 }
 

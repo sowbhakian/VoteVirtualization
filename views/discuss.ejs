@@ -65,72 +65,75 @@
 
     </div>
 
-    <div class=" container whole-dis border border-dark">
-        <legend class="emainame ">Name@gmail.com:</legend> <br>
-        <div class="container gap-dis ">
-            <fieldset class="border border-light feildset">
-                <p class="dis-para">Cairo is a contemporary Arabic and Latin typeface family. Mohamed Gaber extended the famous Latin typeface family Titillum Web to support the Arabic script, with a design that is based on the Kufi calligraphic style. Cairo balances classic
-                    and contemporary tastes with wide open counters and short ascenders and descenders that minimize length while maintaining easy readability. The lighter weights can be used for body text while the heavier weights are perfect for headlines
-                    and display typography. Each font includes stylistic ligatures and the Arabic component has a wide glyph set that supports the Arabic, Farsi and Urdu languages.</p>
-            </fieldset>
+    <% Messages.forEach((element)=>{ %>
+        <div class=" container whole-dis border border-dark">
+            <legend class="emainame ">
+                <%= element.userName %>
+            </legend> <br>
+
+            <div class="container gap-dis ">
+                <fieldset class="border border-light feildset">
+                    <p class="dis-para">
+                        <%= element.message %>
+                    </p>
+                </fieldset>
+            </div>
         </div>
-    </div>
+
+        <% }) %>
 
 
 
 
-    <article>
-        <!--Sign-in-->
-        <div class="modal fade " id="signin-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered text-center popup-model">
-                <div class="modal-content ">
-                    <div class="modal-header border-bottom-0 ">
-                        <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+
+            <!-- posting Doubts -->
+            <article>
+                <div class="modal fade " id="signin-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered text-center popup-model">
+                        <div class="modal-content ">
+                            <div class="modal-header border-bottom-0 ">
+                                <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
                         <span aria-hidden="true ">&times;</span>
                     </button>
-                    </div>
-                    <div class="modal-body ">
-                        <div class="form-title text-center ">
-                            <h4>Post Message</h4>
-                        </div>
-                        <div class="d-flex flex-column text-center ">
-                            <form action="# " method="POST ">
-
-                                <div class="form-group ">
-                                    <textarea rows="4 " class="form-control " id="message " placeholder="Message "></textarea>
+                            </div>
+                            <div class="modal-body ">
+                                <div class="form-title text-center ">
+                                    <h4>Post Your Queries</h4>
                                 </div>
+                                <div class="d-flex flex-column text-center ">
+                                    <form action="/discuss" method="POST">
 
-                                <button type="submit " class="btn btn-primary btn-block btn-round ">Post</button>
-                            </form>
+                                        <div class="form-group ">
+                                            <input type="hidden" name="emailid" value="Name@gmail.com"> </input>
+                                            <textarea rows="4 " class="form-control " id="message " placeholder="Message " name="message" required></textarea>
+                                        </div>
 
+                                        <button type="submit " class="btn btn-primary btn-block btn-round ">Post</button>
+                                    </form>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /sign-in -->
-        </div>
-    </article>
+            </article>
 
 
+            <!-- footer-section -->
+            <section id="footer-section ">
+                <footer>
+                    <p class="cpy-footer "> <i class="far fa-copyright "></i> 2021 Sowbhakian
+                    </p>
+                </footer>
+            </section>
 
 
-
-
-
-
-    <!-- footer-section -->
-    <section id="footer-section ">
-        <footer>
-            <p class="cpy-footer "> <i class="far fa-copyright "></i> 2021 Sowbhakian
-            </p>
-        </footer>
-    </section>
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
-    <!-- Popper JS -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
-    <!-- Bootstrap JS -->
-    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+            <!-- jQuery -->
+            <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+            <!-- Popper JS -->
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+            <!-- Bootstrap JS -->
+            <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
 </body>
 
 </html>

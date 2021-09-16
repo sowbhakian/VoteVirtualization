@@ -84,6 +84,10 @@ function signup() {
 
     $("#signupBar").addClass("white")
     $("#loginBar").removeClass("white")
+
+    $("#loginTxt").removeClass("text-decoration-underline")
+    $("#signupTxt").addClass("text-decoration-underline")
+
 }
 
 function login() {
@@ -92,4 +96,7 @@ function login() {
 
     $("#signupBar").removeClass("white")
     $("#loginBar").addClass("white")
+
+    $("#signupTxt").removeClass("text-decoration-underline")
+    $("#loginTxt").addClass("text-decoration-underline")
 }
