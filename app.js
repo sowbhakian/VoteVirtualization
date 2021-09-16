@@ -1,74 +1,27 @@
-// Home-Toggle-Steps
-function fstep1() {
-    //  Hide 
+const express = require("express");
+const app = express();
 
-    $("#index-flip-steps").fadeOut();
-    $("#index-flip-steps").fadeIn();
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static("public"));
+app.set('view engine', 'ejs');
 
-    $("#step1").addClass("active")
-    $("#step2").removeClass("active")
-    $("#step3").removeClass("active")
 
-    $("#step-p1").removeClass("deactive")
-    $("#step-p2").addClass("deactive")
-    $("#step-p3").addClass("deactive")
-}
+app.get("/", function(req, res) {
+    res.render("index");
+});
 
-function fstep2() {
+app.get("/enroll", function(req, res) {
+    res.render("enroll");
+});
 
-    $("#index-flip-steps").fadeOut();
-    $("#index-flip-steps").fadeIn();
+app.get("/signin", function(req, res) {
+    res.render("signin");
+});
 
-    $("#step1").removeClass("active")
-    $("#step2").addClass("active")
-    $("#step3").removeClass("active")
+app.get("/Discussion", function(req, res) {
+    res.render("discuss");
+});
 
-    $("#step-p1").addClass("deactive")
-    $("#step-p2").removeClass("deactive")
-    $("#step-p3").addClass("deactive")
-}
-
-function fstep3() {
-
-    $("#index-flip-steps").fadeOut();
-    $("#index-flip-steps").fadeIn();
-
-    $("#step1").removeClass("active")
-    $("#step2").removeClass("active")
-    $("#step3").addClass("active")
-
-    $("#step-p1").addClass("deactive")
-    $("#step-p2").addClass("deactive")
-    $("#step-p3").removeClass("deactive")
-}
-
-// Enroll-Toggle
-function enrollshow(user) {
-    if (user === 'nominee') {
-        $("#nominee").removeClass("deactive")
-        $("#voters").addClass("deactive")
-    } else if (user === 'voters') {
-        $("#nominee").addClass("deactive")
-        $("#voters").removeClass("deactive")
-
-    } else {
-        console.log("Enroll Toggle Error " + user);
-
-    }
-    $("#enr-start").addClass("deactive")
-}
-
-// nominee-voters
-function next1() {
-    $("#part1").addClass("deactive");
-    $("#part2").removeClass("deactive");
-    $("#btn2-head").addClass("addblue")
-    $("#enr-part-head").text("Party Details")
-}
-
-function pre1() {
-    $("#part1").removeClass("deactive");
-    $("#part2").addClass("deactive");
-    $("#btn2-head").removeClass("addblue")
-    $("#enr-part-head").text("Personal Details")
-}
+app.listen(9000, function() {
+    console.log("Server running in 9000")
+});

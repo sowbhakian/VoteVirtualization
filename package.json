@@ -1,0 +1,23 @@
+{
+  "name": "2.deployvotes",
+  "version": "1.0.0",
+  "description": "Voting through online",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sowbhakian/2.DeployVotes.git"
+  },
+  "author": "Sowbhakian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sowbhakian/2.DeployVotes/issues"
+  },
+  "homepage": "https://github.com/sowbhakian/2.DeployVotes#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}

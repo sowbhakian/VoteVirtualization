@@ -11,7 +11,7 @@ a:hover {
 }
 
 h4 {
-    color: #00203FFF;
+    /* color: #00203FFF; */
     font-weight: bold;
 }
 
@@ -74,7 +74,7 @@ h4 {
 
 .navbar-dark .navbar-brand {
     color: wheat;
-    font-family: 'PT Serif', serif
+    font-family: 'PT Serif';
 }
 
 @media (max-width: 990px) {
@@ -82,7 +82,7 @@ h4 {
         margin: 0 0;
     }
     .quotes {
-        padding: 0 0;
+        padding: 3% 0;
     }
 }
 
@@ -152,7 +152,7 @@ li {
 /* quotes */
 
 .quotes {
-    padding: 2% 15%;
+    padding: 10% 15%;
     padding-right: 0;
     text-align: center;
     font-family: 'Arvo';
@@ -162,12 +162,9 @@ li {
 .date {
     text-align: center;
     font-weight: normal;
-    padding: 10% 0;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 4%;
     font-family: 'Playfair Display';
     font-weight: bold;
-    margin-top: 5%;
 }
 
 a:hover {
@@ -176,7 +173,7 @@ a:hover {
 
 @media (max-width: 990px) {
     .quotes {
-        padding: 0 0;
+        padding: 5% 0;
     }
 }
 
@@ -246,15 +243,17 @@ h5 {
 
 .card.fat {
     padding: 10px;
+    padding-top: 0;
 }
 
 .card .card-title {
     margin-bottom: 30px;
 }
 
-.form-control {
+
+/* .form-control {
     border-width: 2.3px;
-}
+} */
 
 .form-group label {
     width: 100%;
@@ -289,6 +288,55 @@ h5 {
     .login-whole {
         padding: 5% 10%;
     }
+}
+
+
+/* form */
+
+.switch-bar {
+    border: 0;
+    text-align: center;
+    padding: 1.5% 0;
+    background-color: #999999;
+    cursor: pointer;
+}
+
+#loginBar :hover,
+#signupBar :hover {
+    color: #00076d;
+    font-size: 2rem;
+}
+
+.switch-text {
+    font-family: 'PT Sans Narrow';
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+.white {
+    background-color: white;
+    color: black;
+}
+
+.round-edge-lt {
+    border-top-left-radius: 50px;
+}
+
+.round-edge-rt {
+    border-top-right-radius: 50px;
+}
+
+@media screen and (max-width: 576px) {
+    .vl {
+        border-left: none;
+    }
+    .switch-bar {
+        padding: 0.5% 0;
+    }
+}
+
+.hand {
+    cursor: pointer;
 }
 
 
@@ -352,6 +400,7 @@ h5 {
 
 .form-control {
     margin: 2.5% 3%;
+    margin-left: 0;
 }
 
 .enr-btn-pre {
@@ -399,6 +448,10 @@ h5 {
     margin-top: 4%;
 }
 
+.fa-vote-yea {
+    margin-top: 5%;
+}
+
 @media screen and (max-width: 720px) {
     .enr-heading-button {
         padding: 5% 15% 2%;
@@ -418,5 +471,78 @@ h5 {
 @media screen and (max-width: 720px) {
     .enr-btn-start {
         margin-top: 40%;
+    }
+}
+
+
+/* ----------------------- Discussion ----------------------- */
+
+.head-dis {
+    padding-top: 3%;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Merriweather';
+    text-shadow: 2px 2px #000000;
+}
+
+.dis-para {
+    text-align: left;
+    text-indent: 5%;
+}
+
+.emainame {
+    font-size: 2rem;
+    font-family: 'Anton';
+    color: #003079;
+}
+
+.feildset {
+    padding: 3% 2%;
+    font-family: 'Cairo';
+    font-size: 2rem;
+}
+
+.gap-dis {
+    padding-bottom: 3%;
+}
+
+.whole-dis {
+    padding: 2% 1%;
+}
+
+.add-dis {
+    background-color: #ffffff;
+    padding: 0.5% 0.5%;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+.pluse-div {
+    padding-bottom: 2%;
+    text-align: center;
+}
+
+.dis-preview {
+    display: contents;
+    font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.popup-model {
+    max-width: 70%!important;
+}
+
+@media screen and (max-width: 540px) {
+    .head-dis {
+        font-size: 1.7rem;
+    }
+    .emainame {
+        font-size: 1.3rem;
+    }
+    .feildset {
+        font-size: 1rem;
+    }
+    .popup-model {
+        max-width: 100%!important;
     }
 }
