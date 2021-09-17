@@ -306,12 +306,13 @@ h5 {
 .switch-text {
     font-family: 'PT Sans Narrow';
     font-weight: bolder;
-    font-size: 1.5rem;
+    font-size: 2rem;
     padding: 2% 0;
 }
 
 .white {
-    background-color: white;
+    background-color: #c3c3c3;
+    ;
     color: black;
 }
 
@@ -345,6 +346,18 @@ h5 {
 
 .hand {
     cursor: pointer;
+}
+
+.popup {
+    background-image: linear-gradient(to bottom, #ff0000, #f70000, #ee0000, #e60000, #de0000, #d50000, #cc0001, #c30001, #b80001, #ac0001, #a10001, #960000);
+    color: white;
+    padding: 0 5%;
+    text-align: center;
+    font-size: large;
+}
+
+.popup-head {
+    padding: 1% 0;
 }
 
 
@@ -552,5 +565,99 @@ h5 {
     }
     .popup-model {
         max-width: 100%!important;
+    }
+}
+
+
+/* ----------------------- Vote ----------------------- */
+
+.vote-body {
+    background-color: #ffffff;
+    background-image: url("https://www.transparenttextures.com/patterns/brick-wall.png");
+}
+
+.gra-img {
+    background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+}
+
+.trans {
+    background-image: linear-gradient(to left top, #00b75f, #00b585, #00b1a3, #00abb6, #00a3be, #0095bd, #0086ba, #0076b4, #005ca6, #004195, #002681, #000268);
+}
+
+.vote-headbox {
+    padding: 0 3%;
+    padding-bottom: 3.5%;
+}
+
+.vote-head {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bolder;
+    color: wheat;
+    padding: 3% 0;
+}
+
+.vote-icon {
+    color: rgb(224, 200, 150);
+}
+
+.vote-box {
+    margin: 2% 0;
+    padding: 5% 0;
+    box-shadow: -1px 0 8px rgb(0, 89, 255);
+    box-shadow: 5px 2px 20px whitesmoke;
+}
+
+.vote-box1 {
+    margin: 2% 0;
+    padding: 5% 0;
+    box-shadow: -1px 0 8px rgb(255, 255, 255);
+    border-radius: 20rem;
+    box-shadow: 2px 5px 10px rgb(212, 212, 212);
+}
+
+.vote-box1-div {
+    margin-top: 6%;
+}
+
+.vote-box:hover,
+.vote-box1:hover {
+    box-shadow: 5px 5px 25px rgb(255, 255, 255);
+}
+
+.text-votebox {
+    font-family: 'Merriweather';
+    color: rgb(153, 255, 192);
+    font-size: 1.5rem;
+}
+
+.welcome-msg {
+    text-align: center;
+    font-family: 'Bree Serif';
+    font-weight: bold;
+    color: #000000;
+    margin: 2% 0;
+}
+
+.sts-msg {
+    color: #000268;
+    font-family: 'Vollkorn';
+    font-weight: bold;
+    text-align: center;
+    margin: 2% 0;
+}
+
+@media screen and (max-width: 540px) {
+    .vote-box1 {
+        margin: 10% 0;
+    }
+    .vote-status {
+        margin: 5% 0;
+    }
+    .text-votebox {
+        font-size: large;
+    }
+    .vote-head {
+        font-size: 2rem;
     }
 }

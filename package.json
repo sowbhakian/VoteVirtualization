@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/sowbhakian/2.DeployVotes#readme",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "mongoose": "^6.0.6"
   }
 }

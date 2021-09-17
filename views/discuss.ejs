@@ -48,7 +48,10 @@
                         <a href="/enroll" class="nav-link nav-link-ltr textinnav ">Enroll</a>
                         <a href="/signin" class="nav-link nav-link-ltr textinnav ">Login</a>
                         <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">Discussion</a>
-                        <h6 class="text-light my-auto">sowbhakian@gmail.com</h6>
+                        <h6 class="text-light my-auto">
+                            <i class="fas fa-user-tie"></i>
+                            <%= DisName %>
+                        </h6>
                     </div>
                 </div>
             </div>
@@ -104,7 +107,7 @@
                                     <form action="/discuss" method="POST">
 
                                         <div class="form-group ">
-                                            <input type="hidden" name="emailid" value="Name@gmail.com"> </input>
+                                            <input type="hidden" name="emailid" value="<%= DisName %>"> </input>
                                             <textarea rows="4 " class="form-control " id="message " placeholder="Message " name="message" required></textarea>
                                         </div>
 

@@ -45,7 +45,10 @@
                         <a href="/enroll" class="nav-link nav-link-ltr textinnav ">Enroll</a>
                         <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">Login</a>
                         <a href="/Discussion" class="nav-link nav-link-ltr textinnav ">Discussion</a>
-                        <h6 class="text-light my-auto">sowbhakian@gmail.com</h6>
+                        <h6 class="text-light my-auto">
+                            <i class="fas fa-user-tie"></i>
+                            <%= DisName %>
+                        </h6>
                     </div>
                 </div>
             </div>
@@ -53,106 +56,114 @@
     </section>
 
 
-    <!-- Signup -->
-    <section>
+    <% if(message.length > 0) {%>
+        <div class="popup">
+            <h4 class="popup-head">
+                <%= message %>
+            </h4>
+        </div>
+        <% } %>
 
-        <div id="login" class="login-whole">
+            <!-- Signup -->
+            <section>
 
-            <div class="card-wrapper">
+                <div id="login" class="login-whole">
+
+                    <div class="card-wrapper">
 
 
 
-                <div class="card-body card fat container-fluid">
-                    <div class="switch-form">
-                        <div class="row">
-                            <div id="signupBar" class="col-lg-6 col-md-6 col-sm-6 col-xs-6  switch-bar round-edge-lt white">
-                                <h6 id="signupTxt" class="switch-text text-decoration-underline" onclick=signup()>Sign up</h6>
-                            </div>
-                            <div id="loginBar" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 round-edge switch-bar  round-edge-rt">
-                                <h6 id="loginTxt" class="switch-text" onclick=login()>Login</h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- signupForm -->
-                    <div id="signupForm">
-                        <form action="/signup" method="POST" class="my-login-validation">
-                            <div class="form-group formTopCls">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" name="name" required autofocus>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">E-Mail Address</label>
-                                <input type="email" class="form-control" name="email" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" required data-eye>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ph">Phone No.</label>
-                                <input type="number" class="form-control" name="phonenumber" required data-eye>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="custom-checkbox custom-control">
-                                    <input type="checkbox" name="agree" id="agree" class="custom-control-input" required="">
-                                    <label for="agree" class="custom-control-label">I agree to the <a href="#">Terms and Conditions</a></label>
+                        <div class="card-body card fat container-fluid">
+                            <div class="switch-form">
+                                <div class="row">
+                                    <div id="signupBar" class="col-lg-6 col-md-6 col-sm-6 col-xs-6  switch-bar round-edge-lt white">
+                                        <h6 id="signupTxt" class="switch-text text-decoration-underline" onclick=signup()>Sign up</h6>
+                                    </div>
+                                    <div id="loginBar" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 round-edge switch-bar  round-edge-rt">
+                                        <h6 id="loginTxt" class="switch-text" onclick=login()>Login</h6>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block btn-index">
+                            <!-- signupForm -->
+                            <div id="signupForm">
+                                <form action="/signup" method="POST" class="my-login-validation">
+                                    <div class="form-group formTopCls">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" name="name" required autofocus>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">E-Mail Address</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" name="password" required data-eye>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ph">Phone No.</label>
+                                        <input type="number" class="form-control" name="phonenumber" required data-eye>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="custom-checkbox custom-control">
+                                            <input type="checkbox" name="agree" id="agree" class="custom-control-input" required="">
+                                            <label for="agree" class="custom-control-label">I agree to the <a href="#">Terms and Conditions</a></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m-0">
+                                        <button type="submit" class="btn btn-primary btn-block btn-index">
                                     Submit
                                 </button>
-                            </div>
-                            <div class="mt-4 text-center">
-                                Already have an account? <a href="#">Login</a>
-                            </div>
-                        </form>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        Already have an account? <a href="#">Login</a>
+                                    </div>
+                                </form>
 
-                    </div>
-
-                    <!-- loginForm -->
-                    <div id="loginForm" class="deactive">
-                        <form action="/login" method="POST" class="my-login-validation" novalidate="">
-
-                            <div class="form-group formTopCls">
-                                <label for="email">E-Mail Address</label>
-                                <input type="email" class="form-control" name="email" required>
                             </div>
 
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" required data-eye>
-                            </div>
+                            <!-- loginForm -->
+                            <div id="loginForm" class="deactive">
+                                <form action="/login" method="POST" class="my-login-validation" novalidate="">
 
-                            <div class="form-group m-0">
-                                <button type="submit" class="btn btn-primary btn-block btn-index">
+                                    <div class="form-group formTopCls">
+                                        <label for="email">E-Mail Address</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" name="password" required data-eye>
+                                    </div>
+
+                                    <div class="form-group m-0">
+                                        <button type="submit" class="btn btn-primary btn-block btn-index">
                                     Login
                                 </button>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        <h6 class="hand" onclick=login()>link</h6>
+                                        Don't have an account? <a href="#">Login</a>
+                                    </div>
+                                </form>
+
                             </div>
-                            <div class="mt-4 text-center">
-                                <h6 class="hand" onclick=login()>link</h6>
-                                Don't have an account? <a href="#">Login</a>
-                            </div>
-                        </form>
+
+
+                        </div>
 
                     </div>
-
-
                 </div>
+            </section>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- jquery  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="animation.js"></script>
+            <!-- jquery  -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="animation.js"></script>
 </body>
 
 </html>
