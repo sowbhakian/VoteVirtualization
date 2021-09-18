@@ -162,7 +162,7 @@ app.post("/login", function(req, res) {
                 if (output.mailId === email) {
                     if (output.password === pass) {
                         disName = output.Name
-                        res.redirect("/")
+                        res.redirect("/enroll")
                     } else {
                         req.flash('message', 'Incorrect Password!')
                         res.redirect("/signin")

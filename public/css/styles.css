@@ -368,17 +368,19 @@ h5 {
 
 .enr-heading-button {
     text-align: center;
-    padding: 5% 30% 0%;
+    padding: 10% 25%;
+    padding-bottom: 2%;
+}
+
+.vote-heading-button {
+    text-align: center;
+    padding: 5% 25%;
 }
 
 .Enroll-heading {
     text-align: center;
     font-weight: bold;
     font-size: 2rem;
-}
-
-.enr-btn-start {
-    margin-top: 10%;
 }
 
 
@@ -438,7 +440,8 @@ h5 {
 
 .heading-n-v {
     font-size: 2rem;
-    font-family: 'PT Sans Narrow';
+    font-family: 'Alfa Slab One';
+    color: #000000;
 }
 
 
@@ -475,7 +478,7 @@ h5 {
 
 @media screen and (max-width: 720px) {
     .enr-heading-button {
-        padding: 5% 15% 2%;
+        padding: 10% 5%;
     }
     .enr-content-body {
         margin: 2% 5%;
@@ -492,6 +495,12 @@ h5 {
 @media screen and (max-width: 720px) {
     .enr-btn-start {
         margin-top: 40%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .heading-n-v {
+        font-size: 1.5rem;
     }
 }
 
@@ -593,12 +602,8 @@ h5 {
     font-size: 2.5rem;
     text-align: center;
     font-weight: bolder;
-    color: wheat;
+    color: white;
     padding: 3% 0;
-}
-
-.vote-icon {
-    color: rgb(224, 200, 150);
 }
 
 .vote-box {
@@ -608,20 +613,7 @@ h5 {
     box-shadow: 5px 2px 20px whitesmoke;
 }
 
-.vote-box1 {
-    margin: 2% 0;
-    padding: 5% 0;
-    box-shadow: -1px 0 8px rgb(255, 255, 255);
-    border-radius: 20rem;
-    box-shadow: 2px 5px 10px rgb(212, 212, 212);
-}
-
-.vote-box1-div {
-    margin-top: 6%;
-}
-
-.vote-box:hover,
-.vote-box1:hover {
+.vote-box:hover {
     box-shadow: 5px 5px 25px rgb(255, 255, 255);
 }
 
@@ -647,10 +639,12 @@ h5 {
     margin: 2% 0;
 }
 
+.vote-return {
+    text-align: right;
+    margin-right: 5%;
+}
+
 @media screen and (max-width: 540px) {
-    .vote-box1 {
-        margin: 10% 0;
-    }
     .vote-status {
         margin: 5% 0;
     }
@@ -659,5 +653,73 @@ h5 {
     }
     .vote-head {
         font-size: 2rem;
+    }
+    .vote-headbox {
+        margin-bottom: 10%;
+    }
+    .vote-box {
+        margin-bottom: 10%;
+    }
+}
+
+.vote-IC {
+    border-radius: 10rem;
+    background-color: #94949418;
+    padding: 8% 8%;
+}
+
+.vote-partyName {
+    font-family: 'Vollkorn';
+    font-weight: bolder;
+    font-size: 2.5rem;
+    color: #0055b6;
+}
+
+.voting-iconDiv {
+    margin-top: 5%;
+    padding: 3% 0;
+    margin-bottom: 10%;
+}
+
+.voting-title {
+    text-align: center;
+    margin-top: 5%;
+    color: #000268;
+    font-family: 'Alfa Slab One';
+}
+
+.vote-btn {
+    padding: 2% 15%;
+}
+
+.voteMsgLt {
+    margin-left: 5%;
+    text-align: left;
+}
+
+.voteMsgRt {
+    text-align: right;
+    margin-right: 5%;
+}
+
+@media screen and (max-width: 768px) {
+    .vote-IC {
+        font-size: 500%;
+    }
+    .vote-partyName {
+        font-size: 2rem;
+    }
+    .voteMsgLt,
+    .voteMsgRt {
+        text-align: center;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .sts-msg {
+        margin: 7% 0;
+    }
+    .vote-return {
+        text-align: center;
+        margin-right: 0;
     }
 }

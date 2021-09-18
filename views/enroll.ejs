@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Playfair+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
 
     <!-- google icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -69,9 +69,9 @@
 
     <!-- heading -->
     <section>
-        <div id="enr-start" class="enr-heading-button enr-btn-start ">
+        <div id="enr-start" class="enr-heading-button ">
             <div id="heading-button1">
-                <h3 id="Enroll-heading" class="heading-n-v">Enrollment for</h3>
+                <h3 id="Enroll-heading" class="heading-n-v">Enrollment Process</h3>
                 <button type="button" class="btn btn-primary btn-lg btn-block" onclick="enrollshow('nominee')">Nominee </button>
             </div>
             <div id="heading-button2">
@@ -81,8 +81,8 @@
     </section>
 
     <!--  Enroll-content-body -->
-    <section>
-        <div class="enr-content-body">
+    <section id="">
+        <div class="enr-content-body ">
 
             <!-- Nominee -->
             <section id="nominee" class="deactive">
@@ -209,6 +209,19 @@
         </div>
     </section>
 
+    <!--  Voting-content-body -->
+    <section>
+        <section>
+            <div id="enr-start" class="vote-heading-button">
+                <p class="heading-n-v">Voting Process</p>
+                <div id="heading-button1">
+                    <a href="/vote">
+                        <button type="button" class="btn btn-warning btn-lg btn-block">Click to VOTE </button>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </section>
 
     <!-- jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
