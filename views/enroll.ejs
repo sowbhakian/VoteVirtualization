@@ -77,7 +77,20 @@
             <div id="heading-button2">
                 <button type="button" class="btn btn-secondary  btn-lg btn-block" onclick="enrollshow('voters')">Voters </button>
             </div>
-        </div>
+            <!--  Voting-content-body -->
+            <section>
+                <div class="vote-heading-button">
+                    <!-- <div id="enr-start" class="vote-heading-button"> -->
+                    <p class="heading-n-v">Voting Process</p>
+                    <div id="heading-button1">
+                        <a href="/vote">
+                            <button type="button" class="btn btn-warning btn-lg btn-block">Click to VOTE </button>
+                        </a>
+                    </div>
+                </div>
+            </section>
+    </section>
+    </div>
     </section>
 
     <!--  Enroll-content-body -->
@@ -86,9 +99,7 @@
 
             <!-- Nominee -->
             <section id="nominee" class="deactive">
-
                 <p class="heading-n-v">Enrollment for Nominee</p>
-
                 <div class="enr-input-body bg-white">
                     <form action="" method="POST">
                         <!-- part-display -->
@@ -108,23 +119,23 @@
                         <div id="part1">
                             <div class="form-row">
                                 <label>Aadhar Number</label>
-                                <input type="text" class="form-control" maxlength="12" minlength="12">
+                                <input type="text" class="form-control" name="aadharNo" value="" maxlength="12" minlength="12" required>
                             </div>
+
+                            <input type="hidden" class="form-control" name="emailId" value="<%=Email_Id%>" required>
+
                             <div class="form-row">
-                                <label>E-Mail Address</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-row">
-                                <label>Phone number</label>
-                                <input type="number" class="form-control">
+                                <label>Degree Qualification</label>
+                                <input type="number" class="form-control" name="degree" value="" required>
                             </div>
                             <div class="form-row">
                                 <label>Address</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="address" value="" required>
                             </div>
                             <div class="form-row">
                                 <label>Age</label>
-                                <input type="number" class="form-control"> </div>
+                                <input type="number" class="form-control" name="age" value="" required>
+                            </div>
 
                             <div class="enr-btn-div">
                                 <button type="button" class="btn btn-primary enr-btn-next" onclick="next1()">Next <i class="fas fa-angle-double-right"></i></button>
@@ -135,7 +146,7 @@
                         <div id="part2" class="deactive">
                             <div class="form-row">
                                 <label>Party Name</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="partName" required>
                             </div>
                             <div class="form-row">
                                 <label>Party Symbol</label>
@@ -209,19 +220,7 @@
         </div>
     </section>
 
-    <!--  Voting-content-body -->
-    <section>
-        <section>
-            <div id="enr-start" class="vote-heading-button">
-                <p class="heading-n-v">Voting Process</p>
-                <div id="heading-button1">
-                    <a href="/vote">
-                        <button type="button" class="btn btn-warning btn-lg btn-block">Click to VOTE </button>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </section>
+
 
     <!-- jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

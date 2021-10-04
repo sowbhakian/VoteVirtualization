@@ -227,6 +227,10 @@ h5 {
 
 /* ----------------------- LOGIN ----------------------- */
 
+.message_btn {
+    font-size: 1.5rem;
+}
+
 .my-login-page .card-wrapper {
     width: 400px;
 }
@@ -349,11 +353,12 @@ h5 {
 }
 
 .popup {
-    background-image: linear-gradient(to bottom, #ff0000, #f70000, #ee0000, #e60000, #de0000, #d50000, #cc0001, #c30001, #b80001, #ac0001, #a10001, #960000);
+    /* background-image: linear-gradient(to bottom, #ff0000, #f70000, #ee0000, #e60000, #de0000, #d50000, #cc0001, #c30001, #b80001, #ac0001, #a10001, #960000); */
     color: white;
     padding: 0 5%;
     text-align: center;
     font-size: large;
+    margin-top: 2%;
 }
 
 .popup-head {
@@ -374,7 +379,7 @@ h5 {
 
 .vote-heading-button {
     text-align: center;
-    padding: 5% 25%;
+    padding: 10% 5%;
 }
 
 .Enroll-heading {

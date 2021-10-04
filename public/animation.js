@@ -100,3 +100,9 @@ function login() {
     $("#signupTxt").removeClass("text-decoration-underline")
     $("#loginTxt").addClass("text-decoration-underline")
 }
+
+//Hiding Message
+function messageHide() {
+    $("#popupmsgFail").addClass("deactive")
+    $("#popupmsgSus").addClass("deactive")
+}

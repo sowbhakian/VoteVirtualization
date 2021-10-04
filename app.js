@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const _ = require('lodash');
 const app = express();
 
 const session = require("express-session")
@@ -37,7 +38,9 @@ const discussionSchema = new mongoose.Schema({
 });
 const SendMsg = mongoose.model("Discuss", discussionSchema) //Collection-2
 
-//Signup/Login-Login-s3
+//Signup/Login-Login-S3
+let disName;
+let email_Id;
 const voterSchema = new mongoose.Schema({
     Name: String,
     mailId: String,
@@ -46,6 +49,23 @@ const voterSchema = new mongoose.Schema({
 });
 const Voter = mongoose.model("Voter", voterSchema) //Collection-3
 
+//Enroll-S4
+const nomineeSchema = new mongoose.Schema({
+    aadharNo: Number,
+    emailId: String,
+    degree: String,
+    address: String,
+    age: Number,
+    partName: String,
+    symbol: String
+})
+const Nominee = mongoose.model("Nominee", nomineeSchema) //Collection-4
+
+//Enroll-S5
+const symbolSchema = new mongoose.Schema({
+    icon: String
+})
+const Symbol = mongoose.model("Symbol", symbolSchema) //Collection-5
 
 app.get("/", function(req, res) {
 
@@ -106,11 +126,56 @@ app.get("/", function(req, res) {
 
 app.get("/enroll", function(req, res) {
     if (disName == undefined) {
-
         res.redirect("/signin")
     } else {
-        res.render("enroll", { DisName: disName });
+        Symbol.find({}, (err, output) => {
+            if (!err) {
+                if (output.length === 0) {
+                    const bulb = new Symbol({
+                        icon: "fa-lightbulb"
+                    })
+                    const gravel = new Symbol({
+                        icon: "fa-gavel"
+                    })
+                    const broom = new Symbol({
+                        icon: "fa-broom"
+                    })
+                    const leaf = new Symbol({
+                        icon: "fa-angellist"
+                    })
+                    const access = new Symbol({
+                        icon: "fa-universal-access"
+                    })
+                    const bell = new Symbol({
+                        icon: "fa-bell"
+                    })
+
+                    const iconsList = [bulb, gravel, broom, leaf, access, bell]
+
+                    Symbol.insertMany({ iconsList }, (err) => {})
+
+                } else {
+                    Symbol.find({}, (err, output) => {
+                        if (!err) {
+                            // console.log(output)
+                            // console.log("in output")
+                        }
+                    })
+                }
+            }
+        })
+        res.render("enroll", { DisName: disName, Email_Id: email_Id });
     }
+});
+
+app.post("/enroll", function(req, res) {
+    const aadharNo = body.req.aadharNo;
+    const emailId = body.req.emailId;
+    const degree = body.req.degree;
+    const address = body.req.address;
+    const age = body.req.age;
+    const partName = body.req.partName;
+    const symbol = body.req.symbol;
 });
 
 
@@ -121,16 +186,22 @@ app.get("/signin", function(req, res) {
 
 app.post("/signup", function(req, res) {
     const name = req.body.name;
-    const email = req.body.email;
+    //email = userID
+    const email = _.lowerCase(req.body.email);
     const pass = req.body.password;
     const ph = req.body.phonenumber;
+    let check = false;
 
-    Voter.findOne({ email: email }, (err, output) => {
+    Voter.find({}, (err, output) => {
         if (!err) {
-            if (output) {
-                req.flash('message', 'Mail-Id already Exist!')
-                res.redirect("/signin")
-            } else {
+
+            output.forEach(output => {
+                if (output.mailId === email) {
+                    check = true
+                    res.render("signin", { DisName: disName, message: "Mail-Id already Exist!" });
+                }
+            })
+            if (check === false) {
                 const newVoter = new Voter({
                     Name: name,
                     mailId: email,
@@ -140,7 +211,8 @@ app.post("/signup", function(req, res) {
 
                 newVoter.save((err) => {
                     if (!err) {
-                        res.redirect("/signin");
+
+                        res.render("signin", { DisName: disName, message: "Successfully Signed up!" });
                     }
                 })
             }
@@ -149,29 +221,35 @@ app.post("/signup", function(req, res) {
 
 });
 
-// Declaration
-let disName;
+
 app.post("/login", function(req, res) {
-    const email = req.body.email;
+    const email = _.lowerCase(req.body.email);
     const pass = req.body.password;
+    let mailCheck = false;
 
-    Voter.findOne({ email: email }, (err, output) => {
+    Voter.find({}, (err, output1) => {
         if (!err) {
-            // console.log(output);
-            if (output) {
-                if (output.mailId === email) {
-                    if (output.password === pass) {
-                        disName = output.Name
-                        res.redirect("/enroll")
-                    } else {
-                        req.flash('message', 'Incorrect Password!')
-                        res.redirect("/signin")
-                    }
-                } else {
-                    req.flash('message', 'Invalid Mail-Id!')
-                    res.redirect("/signin")
+            // console.log(output1);
+            if (output1) {
 
+                output1.forEach(output => {
+                    if (output.mailId === email) {
+                        if (output.password === pass) {
+                            disName = output.Name
+                            email_Id = output.mailId
+                            res.redirect("/enroll")
+                        } else {
+                            // console.log("In Pass Fail");
+                            res.render("signin", { DisName: disName, message: "Incorrect Password!" });
+                        }
+                        mailCheck = true;
+                    }
+                });
+
+                if (mailCheck === false) {
+                    res.render("signin", { DisName: disName, message: "Invalid UserId" });
                 }
+
             }
         }
     })
