@@ -49,7 +49,8 @@ const voterSchema = new mongoose.Schema({
 });
 const Voter = mongoose.model("Voter", voterSchema) //Collection-3
 
-//Enroll-S4
+//Enroll-details-S4 
+var symbolsList = [];
 const nomineeSchema = new mongoose.Schema({
     aadharNo: Number,
     emailId: String,
@@ -61,11 +62,14 @@ const nomineeSchema = new mongoose.Schema({
 })
 const Nominee = mongoose.model("Nominee", nomineeSchema) //Collection-4
 
-//Enroll-S5
-const symbolSchema = new mongoose.Schema({
-    icon: String
-})
-const Symbol = mongoose.model("Symbol", symbolSchema) //Collection-5
+//Voters Enrollment
+const voterEnrollmentSchema = new mongoose.Schema({
+    aadharNo: Number,
+    email: String,
+    Enrollstatus: String,
+    Votingstatus: String
+});
+const EnrollS = mongoose.model("EnrollStatus", voterEnrollmentSchema) //Collection-5
 
 app.get("/", function(req, res) {
 
@@ -122,63 +126,13 @@ app.get("/", function(req, res) {
 
 });
 
-
-
 app.get("/enroll", function(req, res) {
     if (disName == undefined) {
         res.redirect("/signin")
     } else {
-        Symbol.find({}, (err, output) => {
-            if (!err) {
-                if (output.length === 0) {
-                    const bulb = new Symbol({
-                        icon: "fa-lightbulb"
-                    })
-                    const gravel = new Symbol({
-                        icon: "fa-gavel"
-                    })
-                    const broom = new Symbol({
-                        icon: "fa-broom"
-                    })
-                    const leaf = new Symbol({
-                        icon: "fa-angellist"
-                    })
-                    const access = new Symbol({
-                        icon: "fa-universal-access"
-                    })
-                    const bell = new Symbol({
-                        icon: "fa-bell"
-                    })
-
-                    const iconsList = [bulb, gravel, broom, leaf, access, bell]
-
-                    Symbol.insertMany({ iconsList }, (err) => {})
-
-                } else {
-                    Symbol.find({}, (err, output) => {
-                        if (!err) {
-                            // console.log(output)
-                            // console.log("in output")
-                        }
-                    })
-                }
-            }
-        })
-        res.render("enroll", { DisName: disName, Email_Id: email_Id });
+        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: " " });
     }
 });
-
-app.post("/enroll", function(req, res) {
-    const aadharNo = body.req.aadharNo;
-    const emailId = body.req.emailId;
-    const degree = body.req.degree;
-    const address = body.req.address;
-    const age = body.req.age;
-    const partName = body.req.partName;
-    const symbol = body.req.symbol;
-});
-
-
 
 app.get("/signin", function(req, res) {
     res.render("signin", { DisName: disName, message: req.flash('message') });
@@ -196,12 +150,12 @@ app.post("/signup", function(req, res) {
         if (!err) {
 
             output.forEach(output => {
-                if (output.mailId === email) {
+                if (output.mailId == email) {
                     check = true
-                    res.render("signin", { DisName: disName, message: "Mail-Id already Exist!" });
+                    res.render("signin", { DisName: disName, message: "User-Id already Exist!" });
                 }
             })
-            if (check === false) {
+            if (!check) {
                 const newVoter = new Voter({
                     Name: name,
                     mailId: email,
@@ -211,7 +165,6 @@ app.post("/signup", function(req, res) {
 
                 newVoter.save((err) => {
                     if (!err) {
-
                         res.render("signin", { DisName: disName, message: "Successfully Signed up!" });
                     }
                 })
@@ -281,10 +234,113 @@ app.post("/discuss", function(req, res) {
 });
 
 
-
 app.get("/vote", function(req, res) {
     res.render("vote")
 });
+
+app.post("/votersInfo", (req, res) => {
+    var aadhar = req.body.aadhar;
+    var mailId = req.body.emailid;
+    var Enrollstatus = "Enrolled";
+    var votingstatus = "Not Yet";
+    var cheak = true;
+
+    if (aadhar.length == 0) {
+        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters No Aadhar No. voters" });
+    } else if (aadhar.length != 12) {
+        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters wrong Aadhar No." });
+    } else {
+        EnrollS.find({}, { aadharNo: 1 }, (err, output) => {
+            if (!err) {
+                output.forEach(e => {
+                    if (e.aadharNo == aadhar) {
+                        cheak = false;
+                    }
+                });
+
+                if (cheak) {
+                    const Enrollstatussave = new EnrollS({
+                        aadharNo: aadhar,
+                        email: mailId,
+                        Enrollstatus: Enrollstatus,
+                        Votingstatus: votingstatus
+                    })
+                    Enrollstatussave.save()
+                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Voters" });
+                } else {
+                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters" });
+                }
+            }
+        })
+    }
+
+
+})
+
+app.post("/nomineeInfo", (req, res) => {
+    var aadhar = req.body.aadhar;
+    var mailId = req.body.emailid;
+    var degree = req.body.degree;
+    var address = req.body.address;
+    var age = req.body.age;
+    var partName = req.body.partName;
+    var symbol = req.body.symbol;
+    cheak = true;
+
+    // Nomineestatussave.save((err) => {
+    //     if (!err) {
+    //         res.redirect("enroll");
+    //         res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Voters" });
+    //     }
+    // })
+
+
+    var errormsg;
+
+    if (aadhar.length == 0) {
+        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters No Aadhar No." });
+    } else if (aadhar.length != 12) {
+        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters wrong Aadhar No." });
+    } else {
+        Nominee.find({}, (err, output) => {
+            if (!err) {
+
+                output.forEach(e => {
+                    if (e.aadharNo == aadhar) {
+                        cheak = false;
+                        errormsg = "Enrollment Failed! Same Aadhar Number!"
+                    }
+                    if (e.partName == partName) {
+                        cheak = false;
+                        errormsg = "Enrollment Failed! Same Party Name!"
+                    }
+                    if (e.symbol == symbol) {
+                        cheak = false;
+                        errormsg = "Enrollment Failed! Same Party Symbol!"
+                    }
+
+                });
+                console.log(errormsg);
+                if (cheak) {
+                    const Nomineesave = new Nominee({
+                        aadharNo: aadhar,
+                        emailId: mailId,
+                        degree: degree,
+                        address: address,
+                        age: age,
+                        partName: partName,
+                        symbol: symbol
+                    })
+                    Nomineesave.save()
+                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Nominee" });
+                } else {
+                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: errormsg });
+                }
+            }
+        })
+    }
+
+})
 
 
 app.listen(9000, function() {

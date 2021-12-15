@@ -70,38 +70,179 @@
     <!-- heading -->
     <section>
         <div id="enr-start" class="enr-heading-button ">
-            <div id="heading-button1">
+            <!-- Steps -->
+            <h2 class="heading-n-v text-center">Steps To Follow!</h2>
+            <div class="steps-head">
+                <div class="border border-light points-enr">
+                    <p class="para-top">
+                        <i class="fas fa-hand-point-right hand-icon fa-2x "></i> All should enroll as a voter <i>(Before Closing Date)
+                    </i>
+                    </p>
+                    <p>
+                        <i class="fas fa-hand-point-right hand-icon fa-2x "></i> After Registering as voter, Nominee can Register their party
+                    </p>
+                    <p class="para-bottom">
+                        <i class="fas fa-hand-point-right hand-icon fa-2x "></i> You can vote at <i>
+                        23/11/2021
+                    </i>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Enr-button -->
+            <div class="border border-light">
                 <h3 id="Enroll-heading" class="heading-n-v">Enrollment Process</h3>
-                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="enrollshow('nominee')">Nominee </button>
+                <h3>Click VOTERS button to Enroll as VOTER:
+
+                    <% if(message == "Enrollment Success Voters") {%>
+                        <div class="popup" id="popupmsgSus">
+                            <button type="button" class="btn btn-success btn-block message_btn enrollSuccess" onclick="messageHide()">
+                                <div class="text-right">
+                                    <i class="far fa-times-circle text-light float-right"></i>
+                                </div>
+                                Enrollment Successfully! 
+                            </button>
+                        </div>
+                        <% } %>
+
+                            <% if(message == "Enrollment Failed! Voters") {%>
+                                <div class="popup" id="popupmsgFail">
+                                    <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                            <div class="text-right">
+                                <i class="far fa-times-circle text-light float-right"></i>
+                            </div>
+                                Same Aadhar Number Enrollment Failed!
+                                </button>
+                                </div>
+                                <% } %>
+
+
+                                    <% if(message == "Enrollment Failed! Voters No Aadhar No. voters") {%>
+                                        <div class="popup" id="popupmsgFail">
+                                            <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                            <div class="text-right">
+                                <i class="far fa-times-circle text-light float-right"></i>
+                            </div>
+                            No Aadhar Number Enrollment Failed!
+                                </button>
+                                        </div>
+                                        <% } %>
+
+                                            <% if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
+                                                <div class="popup" id="popupmsgFail">
+                                                    <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                <div class="text-right">
+                                    <i class="far fa-times-circle text-light float-right"></i>
+                                </div>
+                                Enrollment Failed! Voters wrong Aadhar No.
+                                    </button>
+                                                </div>
+                                                <% } %>
+
+                                                    <div class="ennroll-btn-pad">
+                                                        <div class="border border-light enr-borderCurve" id="heading-button1">
+                                                            <p class="enrollBtn" onclick="enrollshow('voters')">Voters</p>
+                                                        </div>
+                                                    </div>
+                </h3>
+
+                <h3>Click NOMINEE button to Enroll as CANDIDATE:</h3>
+
+                <% if(message == "Enrollment Success Nominee"){%>
+                    <div class="popup" id="popupmsgSus">
+                        <button type="button" class="btn btn-success btn-block message_btn enrollSuccess" onclick="messageHide()">
+                            <div class="text-right">
+                                <i class="far fa-times-circle text-light float-right"></i>
+                            </div>
+                            <%= message %>
+                        </button>
+                    </div>
+                    <% } %>
+
+                        <% if(message == "Enrollment Failed! Same Aadhar Number!" || message =="Enrollment Failed! Same Party Name!" || message =="Enrollment Failed! Same Party Symbol!") {%>
+                            <div class="popup" id="popupmsgFail">
+                                <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                        <div class="text-right">
+                            <i class="far fa-times-circle text-light float-right"></i>
+                        </div>
+                            <%= message %>
+                            </button>
+                            </div>
+                            <% } %>
+
+                                <% if(message == "Enrollment Failed! Voters No Aadhar No.") {%>
+                                    <div class="popup" id="popupmsgFail">
+                                        <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                    <div class="text-right">
+                                        <i class="far fa-times-circle text-light float-right"></i>
+                                    </div>
+                                    No Aadhar Number Enrollment Failed!
+                                        </button>
+                                    </div>
+                                    <% } %>
+
+                                        <% if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
+                                            <div class="popup" id="popupmsgFail">
+                                                <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                        <div class="text-right">
+                                            <i class="far fa-times-circle text-light float-right"></i>
+                                        </div>
+                                        Enrollment Failed! Voters wrong Aadhar No.
+                                            </button>
+                                            </div>
+                                            <% } %>
+
+
+                                                <% if(message == "Enrollment Failed! Same PART NAME!") {%>
+                                                    <div class="popup" id="popupmsgFail">
+                                                        <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                        <div class="text-right">
+                                            <i class="far fa-times-circle text-light float-right"></i>
+                                        </div>
+                                        Enrollment Failed! Same PART NAME!
+                                            </button>
+                                                    </div>
+                                                    <% } %>
+
+
+
+
+                                                        <div class="ennroll-btn-pad">
+                                                            <div class="border border-light enr-borderCurve bottom-btn-n" id="heading-button2">
+                                                                <p class="enrollBtn" onclick="enrollshow('nominee')">Nominee</p>
+                                                            </div>
+                                                        </div>
+
             </div>
-            <div id="heading-button2">
-                <button type="button" class="btn btn-secondary  btn-lg btn-block" onclick="enrollshow('voters')">Voters </button>
-            </div>
-            <!--  Voting-content-body -->
+
+            <!--  Voting-btn -->
             <section>
-                <div class="vote-heading-button">
-                    <!-- <div id="enr-start" class="vote-heading-button"> -->
-                    <p class="heading-n-v">Voting Process</p>
-                    <div id="heading-button1">
-                        <a href="/vote">
-                            <button type="button" class="btn btn-warning btn-lg btn-block">Click to VOTE </button>
-                        </a>
+                <div class="border border-light ">
+                    <p class="heading-n-v votingpagehead">Voting Process</p>
+                    <div class="ennroll-btn-pad">
+                        <h3>Click VOTE button to Enroll as VOTER:
+
+                            <div class="border border-light bottom-btn-n  enr-borderCurve2" id="enr-start">
+                                <a href="/vote">
+                                    <p class="enrollBtn2 text-light" type=submit>Click to VOTE</p>
+                                </a>
+                            </div>
+                        </h3>
                     </div>
                 </div>
             </section>
-    </section>
-    </div>
+        </div>
     </section>
 
     <!--  Enroll-content-body -->
     <section id="">
         <div class="enr-content-body ">
-
             <!-- Nominee -->
             <section id="nominee" class="deactive">
                 <p class="heading-n-v">Enrollment for Nominee</p>
                 <div class="enr-input-body bg-white">
-                    <form action="" method="POST">
+                    <form action="/nomineeInfo" method="POST">
+                        <input type="hidden" name="emailid" value="<%= DisName %>">
                         <!-- part-display -->
                         <p id="enr-part-head" class="enr-part-cls">Person Details</p>
                         <div class="row btn-part-display">
@@ -112,21 +253,20 @@
                             <div class="col-lg-6 col-md-6 col-sl-6 ">
                                 <button id="btn2-head" type="button" class="btn  btn-block btn-part-2" onclick="next1()"></button>
                             </div>
-
                         </div>
 
                         <!-- part-1 -->
                         <div id="part1">
                             <div class="form-row">
                                 <label>Aadhar Number</label>
-                                <input type="text" class="form-control" name="aadharNo" value="" maxlength="12" minlength="12" required>
+                                <input type="number" name="aadhar" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="12">
                             </div>
 
                             <input type="hidden" class="form-control" name="emailId" value="<%=Email_Id%>" required>
 
                             <div class="form-row">
                                 <label>Degree Qualification</label>
-                                <input type="number" class="form-control" name="degree" value="" required>
+                                <input type="text" class="form-control" name="degree" value="" required>
                             </div>
                             <div class="form-row">
                                 <label>Address</label>
@@ -182,33 +322,26 @@
                                 <button type="submit" class="btn btn-primary enr-btn-next">SUBMIT</button>
                             </div>
                         </div>
-
                     </form>
-
-
                 </div>
-
             </section>
-
 
             <!-- Voters  -->
             <section id="voters" class="deactive">
                 <p class="heading-n-v">Enrollment for Voters</p>
                 <div class="enr-input-body bg-white">
-                    <form action="" method="POST">
+                    <form action="/votersInfo" method="POST">
+                        <input type="hidden" name="emailid" value="<%= DisName %>">
                         <div id="part1">
                             <div class="form-row">
                                 <label>Aadhar Number</label>
-                                <input type="text" class="form-control" maxlength="12" minlength="12">
+                                <input type="number" name="aadhar" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="12">
                             </div>
-                            <div class="form-row">
+                            <!-- <div class="form-row">
                                 <label>E-Mail Address</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-row">
-                                <label>Phone number</label>
-                                <input type="number" class="form-control">
-                            </div>
+                                <input type="text" name="mailid" class="form-control">
+                            </div> -->
+                            <label> Be ready To Vote For Your Candidate!</label>
                             <div class="enr-btn-div">
                                 <button type="submit" class="btn btn-primary enr-btn-next">Submit </button>
                             </div>

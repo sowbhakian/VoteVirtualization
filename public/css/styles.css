@@ -231,6 +231,10 @@ h5 {
     font-size: 1.5rem;
 }
 
+#signinToggler {
+    cursor: pointer;
+}
+
 .my-login-page .card-wrapper {
     width: 400px;
 }
@@ -260,6 +264,7 @@ h5 {
 
 .btn-index {
     padding: 12px 10px;
+    margin-bottom: 5%;
 }
 
 .login-whole {
@@ -368,18 +373,50 @@ h5 {
 
 /* ----------------------- ENROLL ----------------------- */
 
+.steps-head {
+    padding: 3% 10%;
+}
+
+.step-top {
+    margin-top: 2%;
+}
+
+.hand-icon {
+    text-indent: 5%;
+}
+
+.points-enr {
+    text-align: left;
+    text-indent: 25%;
+}
+
+.para-top {
+    margin-top: 2%;
+}
+
+.para-bottom {
+    margin-bottom: 2%;
+}
+
+.ennroll-btn-pad {
+    padding: 2% 10%;
+}
+
+
+/* old */
+
 
 /* heading */
 
 .enr-heading-button {
     text-align: center;
-    padding: 10% 25%;
+    padding: 5% 10%;
     padding-bottom: 2%;
 }
 
 .vote-heading-button {
     text-align: center;
-    padding: 10% 5%;
+    padding: 5% 20%;
 }
 
 .Enroll-heading {
@@ -447,6 +484,7 @@ h5 {
     font-size: 2rem;
     font-family: 'Alfa Slab One';
     color: #000000;
+    margin: 3% 0;
 }
 
 
@@ -481,6 +519,52 @@ h5 {
     margin-top: 5%;
 }
 
+
+/* Info Section */
+
+.info-enr {
+    text-align: left;
+    padding-right: 7%;
+}
+
+.info-enr p {
+    margin-block-end: 0;
+}
+
+.enr-borderCurve {
+    border-radius: 10rem;
+    color: rgb(255, 240, 212);
+    background-image: linear-gradient(to bottom, #0162a7, #004f83, #023c61, #092a41, #0a1823);
+    font-size: 2rem;
+}
+
+.enr-borderCurve:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to left top, #007dd6, #0068ad, #005386, #0a3e61, #102a3e);
+    color: #ffffff;
+}
+
+.enr-borderCurve2 {
+    margin-top: 3%;
+    color: rgb(0, 0, 0);
+    background-image: linear-gradient(to left top, #d67c00, #e39100, #eea600, #f7bc00, #ffd200);
+    font-size: 2rem;
+}
+
+.enr-borderCurve2:hover {
+    cursor: pointer;
+    background-image: linear-gradient(to top, #d67c00, #e39100, #eea600, #f7bc00, #ffd200);
+}
+
+.votingpagehead {
+    margin-top: 5%;
+    margin-bottom: 0;
+}
+
+.bottom-btn-n {
+    margin-bottom: 5%;
+}
+
 @media screen and (max-width: 720px) {
     .enr-heading-button {
         padding: 10% 5%;
@@ -500,6 +584,13 @@ h5 {
 @media screen and (max-width: 720px) {
     .enr-btn-start {
         margin-top: 40%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .info-enr {
+        padding-right: 0;
+        margin-bottom: 10%;
     }
 }
 
