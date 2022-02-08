@@ -106,3 +106,20 @@ function messageHide() {
     $("#popupmsgFail").addClass("deactive")
     $("#popupmsgSus").addClass("deactive")
 }
+
+
+// admin Nominee & Voters Toggler
+function nomineeDetails() {
+    $("#votersList").addClass("deactive")
+    $("#nomineesList").removeClass("deactive")
+    $("#voterBTN").removeClass("activeBtn")
+    $("#NomineeBTN").addClass("activeBtn")
+}
+
+function voterDetails() {
+
+    $("#votersList").removeClass("deactive")
+    $("#nomineesList").addClass("deactive")
+    $("#voterBTN").addClass("activeBtn")
+    $("#NomineeBTN").removeClass("activeBtn")
+}

@@ -39,7 +39,6 @@
 </head>
 
 <body>
-
     <section id="Nav-bar-section">
         <nav class="navbar navbar-expand-lg navbar-dark navbar-whole-class ">
             <div class="container">
@@ -47,8 +46,8 @@
                 <!-- makes the text right  -->
                 <div class=" w-25 text-right ">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <!-- phone view - right  -->
@@ -76,43 +75,43 @@
                 <div class="border border-light points-enr">
                     <p class="para-top">
                         <i class="fas fa-hand-point-right hand-icon fa-2x "></i> All should enroll as a voter <i>(Before Closing Date)
-                    </i>
+                        </i>
                     </p>
                     <p>
                         <i class="fas fa-hand-point-right hand-icon fa-2x "></i> After Registering as voter, Nominee can Register their party
                     </p>
                     <p class="para-bottom">
                         <i class="fas fa-hand-point-right hand-icon fa-2x "></i> You can vote at <i>
-                        23/11/2021
-                    </i>
+                            23/11/2021
+                        </i>
                     </p>
                 </div>
             </div>
 
             <!-- Enr-button -->
-            <div class="border border-light">
+            <div class="border border-dark ">
                 <h3 id="Enroll-heading" class="heading-n-v">Enrollment Process</h3>
                 <h3>Click VOTERS button to Enroll as VOTER:
 
                     <% if(message == "Enrollment Success Voters") {%>
                         <div class="popup" id="popupmsgSus">
                             <button type="button" class="btn btn-success btn-block message_btn enrollSuccess" onclick="messageHide()">
-                                <div class="text-right">
-                                    <i class="far fa-times-circle text-light float-right"></i>
-                                </div>
-                                Enrollment Successfully! 
-                            </button>
+                                    <div class="text-right">
+                                        <i class="far fa-times-circle text-light float-right"></i>
+                                    </div>
+                                    Enrollment Successfully! 
+                                </button>
                         </div>
                         <% } %>
 
                             <% if(message == "Enrollment Failed! Voters") {%>
                                 <div class="popup" id="popupmsgFail">
                                     <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
-                            <div class="text-right">
-                                <i class="far fa-times-circle text-light float-right"></i>
-                            </div>
-                                Same Aadhar Number Enrollment Failed!
-                                </button>
+                                <div class="text-right">
+                                    <i class="far fa-times-circle text-light float-right"></i>
+                                </div>
+                                    Same Aadhar Number Enrollment Failed!
+                                    </button>
                                 </div>
                                 <% } %>
 
@@ -120,22 +119,22 @@
                                     <% if(message == "Enrollment Failed! Voters No Aadhar No. voters") {%>
                                         <div class="popup" id="popupmsgFail">
                                             <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
-                            <div class="text-right">
-                                <i class="far fa-times-circle text-light float-right"></i>
-                            </div>
-                            No Aadhar Number Enrollment Failed!
-                                </button>
+                                <div class="text-right">
+                                    <i class="far fa-times-circle text-light float-right"></i>
+                                </div>
+                                No Aadhar Number Enrollment Failed!
+                                    </button>
                                         </div>
                                         <% } %>
 
                                             <% if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
                                                 <div class="popup" id="popupmsgFail">
                                                     <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
-                                <div class="text-right">
-                                    <i class="far fa-times-circle text-light float-right"></i>
-                                </div>
-                                Enrollment Failed! Voters wrong Aadhar No.
-                                    </button>
+                                    <div class="text-right">
+                                        <i class="far fa-times-circle text-light float-right"></i>
+                                    </div>
+                                    Enrollment Failed! Voters wrong Aadhar No.
+                                        </button>
                                                 </div>
                                                 <% } %>
 
@@ -151,44 +150,44 @@
                 <% if(message == "Enrollment Success Nominee"){%>
                     <div class="popup" id="popupmsgSus">
                         <button type="button" class="btn btn-success btn-block message_btn enrollSuccess" onclick="messageHide()">
-                            <div class="text-right">
-                                <i class="far fa-times-circle text-light float-right"></i>
-                            </div>
-                            <%= message %>
-                        </button>
+                                <div class="text-right">
+                                    <i class="far fa-times-circle text-light float-right"></i>
+                                </div>
+                                <%= message %>
+                            </button>
                     </div>
                     <% } %>
 
                         <% if(message == "Enrollment Failed! Same Aadhar Number!" || message =="Enrollment Failed! Same Party Name!" || message =="Enrollment Failed! Same Party Symbol!") {%>
                             <div class="popup" id="popupmsgFail">
                                 <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
-                        <div class="text-right">
-                            <i class="far fa-times-circle text-light float-right"></i>
-                        </div>
-                            <%= message %>
-                            </button>
+                            <div class="text-right">
+                                <i class="far fa-times-circle text-light float-right"></i>
+                            </div>
+                                <%= message %>
+                                </button>
                             </div>
                             <% } %>
 
                                 <% if(message == "Enrollment Failed! Voters No Aadhar No.") {%>
                                     <div class="popup" id="popupmsgFail">
                                         <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
-                                    <div class="text-right">
-                                        <i class="far fa-times-circle text-light float-right"></i>
-                                    </div>
-                                    No Aadhar Number Enrollment Failed!
-                                        </button>
+                                        <div class="text-right">
+                                            <i class="far fa-times-circle text-light float-right"></i>
+                                        </div>
+                                        No Aadhar Number Enrollment Failed!
+                                            </button>
                                     </div>
                                     <% } %>
 
                                         <% if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
                                             <div class="popup" id="popupmsgFail">
                                                 <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
-                                        <div class="text-right">
-                                            <i class="far fa-times-circle text-light float-right"></i>
-                                        </div>
-                                        Enrollment Failed! Voters wrong Aadhar No.
-                                            </button>
+                                            <div class="text-right">
+                                                <i class="far fa-times-circle text-light float-right"></i>
+                                            </div>
+                                            Enrollment Failed! Voters wrong Aadhar No.
+                                                </button>
                                             </div>
                                             <% } %>
 
@@ -196,16 +195,13 @@
                                                 <% if(message == "Enrollment Failed! Same PART NAME!") {%>
                                                     <div class="popup" id="popupmsgFail">
                                                         <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
-                                        <div class="text-right">
-                                            <i class="far fa-times-circle text-light float-right"></i>
-                                        </div>
-                                        Enrollment Failed! Same PART NAME!
-                                            </button>
+                                            <div class="text-right">
+                                                <i class="far fa-times-circle text-light float-right"></i>
+                                            </div>
+                                            Enrollment Failed! Same PART NAME!
+                                                </button>
                                                     </div>
                                                     <% } %>
-
-
-
 
                                                         <div class="ennroll-btn-pad">
                                                             <div class="border border-light enr-borderCurve bottom-btn-n" id="heading-button2">
@@ -217,16 +213,27 @@
 
             <!--  Voting-btn -->
             <section>
-                <div class="border border-light ">
+                <div class="border border-dark ">
                     <p class="heading-n-v votingpagehead">Voting Process</p>
                     <div class="ennroll-btn-pad">
                         <h3>Click VOTE button to Enroll as VOTER:
 
-                            <div class="border border-light bottom-btn-n  enr-borderCurve2" id="enr-start">
-                                <a href="/vote">
-                                    <p class="enrollBtn2 text-light" type=submit>Click to VOTE</p>
-                                </a>
-                            </div>
+                            <% if(message == "Voter Not Enrolled!") {%>
+                                <div class="popup" id="popupmsgFail">
+                                    <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                    <div class="text-right">
+                                        <i class="far fa-times-circle text-light float-right"></i>
+                                    </div>
+                                    Voter Not Enrolled!
+                                        </button>
+                                </div>
+                                <% } %>
+
+                                    <div class="border border-light bottom-btn-n  enr-borderCurve2" id="enr-start">
+                                        <a href="/vote">
+                                            <p class="enrollBtn2 text-light" type=submit>Click to VOTE</p>
+                                        </a>
+                                    </div>
                         </h3>
                     </div>
                 </div>
@@ -235,10 +242,28 @@
     </section>
 
     <!--  Enroll-content-body -->
-    <section id="">
+    <section>
         <div class="enr-content-body ">
             <!-- Nominee -->
             <section id="nominee" class="deactive">
+
+                <!-- Display Symbols -->
+                <p class="heading-n-v">Nominated Parties </p>
+                <div class="row border border-success symbolTexture ">
+                    <% partySymbol.forEach((e)=>{ %>
+                        <div class="col-lg-4 symbol-inp-div">
+                            <p>
+                                <%=e.partName%>
+                            </p>
+                            <% if(e.symbol == "fa-angellist"){ %>
+                                <i class="fab <%=e.symbol%> fa-4x"></i>
+                                <% }else{ %>
+                                    <i class="fas <%=e.symbol%> fa-4x"></i>
+                                    <%}%>
+                        </div>
+                        <% }) %>
+                </div>
+
                 <p class="heading-n-v">Enrollment for Nominee</p>
                 <div class="enr-input-body bg-white">
                     <form action="/nomineeInfo" method="POST">
@@ -292,27 +317,27 @@
                                 <label>Party Symbol</label>
                                 <div class="row">
                                     <div class="col-lg-6 symbol-inp-div">
-                                        <input type="radio" name="symbol" value="bulb" class="party-icons">
+                                        <input type="radio" name="symbol" value="fa-lightbulb" class="party-icons" required>
                                         <i class="fas fa-lightbulb fa-4x"></i>
                                     </div>
                                     <div class="col-lg-6 symbol-inp-div">
-                                        <input type="radio" name="symbol" value="gravel" class="party-icons">
+                                        <input type="radio" name="symbol" value="fa-gavel" class="party-icons">
                                         <i class="fas fa-gavel fa-4x"></i>
                                     </div>
                                     <div class="col-lg-6 symbol-inp-div">
-                                        <input type="radio" name="symbol" value="broom" class="party-icons">
+                                        <input type="radio" name="symbol" value="fa-broom" class="party-icons">
                                         <i class="fas fa-broom fa-4x"></i>
                                     </div>
                                     <div class="col-lg-6 symbol-inp-div">
-                                        <input type="radio" name="symbol" value="leaf" class="party-icons">
+                                        <input type="radio" name="symbol" value="fa-angellist" class="party-icons">
                                         <i class="fab fa-angellist fa-4x"></i>
                                     </div>
                                     <div class="col-lg-6 symbol-inp-div">
-                                        <input type="radio" name="symbol" value="access" class="party-icons">
+                                        <input type="radio" name="symbol" value="fa-universal-access" class="party-icons">
                                         <i class="fas fa-universal-access fa-4x"></i>
                                     </div>
                                     <div class="col-lg-6 symbol-inp-div">
-                                        <input type="radio" name="symbol" value="bell" class="party-icons">
+                                        <input type="radio" name="symbol" value="fa-bell" class="party-icons">
                                         <i class="far fa-bell fa-4x"></i>
                                     </div>
                                 </div>
@@ -337,10 +362,6 @@
                                 <label>Aadhar Number</label>
                                 <input type="number" name="aadhar" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="12">
                             </div>
-                            <!-- <div class="form-row">
-                                <label>E-Mail Address</label>
-                                <input type="text" name="mailid" class="form-control">
-                            </div> -->
                             <label> Be ready To Vote For Your Candidate!</label>
                             <div class="enr-btn-div">
                                 <button type="submit" class="btn btn-primary enr-btn-next">Submit </button>
@@ -352,8 +373,6 @@
 
         </div>
     </section>
-
-
 
     <!-- jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

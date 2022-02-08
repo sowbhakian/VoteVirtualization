@@ -40,17 +40,24 @@
         <h3 class="vote-head"><i class="fab fa-dyalog"></i><i class="fab fa-vuejs vote-icon"></i> DeployVotes</h3>
         <div class=" vote-headbox text-center ">
             <div class="vote-box gra-img">
-                <h1 class="welcome-msg">Welcome Sowbhakian, Have a great day!</h1>
+                <h1 class="welcome-msg">Welcome
+                    <%=DisName%>, Have a great day!</h1>
                 <div class="row">
 
                     <div class="col-lg-6 col-md-6 col-sm-12 ">
-                        <h2 class="sts-msg voteMsgRt ">Ends on - 12 Aug 2021</h2>
+                        <h2 class="sts-msg voteMsgRt ">Ends on -
+                            <%= endDate%>
+                        </h2>
                         <h2 class="sts-msg voteMsgRt"> 09:00 AM-06:00 PM</h2>
                     </div>
 
                     <div class="col-lg-6 col-md-6 col-sm-12 ">
-                        <h2 class="sts-msg voteMsgLt">Enrollment Status : Done</h2>
-                        <h2 class="sts-msg voteMsgLt">Voting Status : Not Yet</h2>
+                        <h2 class="sts-msg voteMsgLt">Enrollment Status :
+                            <%=Ests%>
+                        </h2>
+                        <h2 class="sts-msg voteMsgLt">Voting Status :
+                            <%=Vsts%>
+                        </h2>
                     </div>
                 </div>
                 <div class="vote-return">
@@ -68,36 +75,25 @@
 
         <div class="border border-dark voting-iconDiv">
             <div class="row text-center">
-                <div class="col-lg-4 col-md-4 symbol-inp-div">
-                    <i class="fas fa-lightbulb fa-10x vote-IC"></i>
-                    <h2 class="vote-partyName">Party Name</h2>
-                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
-                </div>
-                <div class="col-lg-4 col-md-4 symbol-inp-div">
-                    <i class="fas fa-gavel fa-10x vote-IC"></i>
-                    <h2 class="vote-partyName">Party Name</h2>
-                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
-                </div>
-                <div class="col-lg-4 col-md-4 symbol-inp-div">
-                    <i class="fas fa-broom fa-10x vote-IC"></i>
-                    <h2 class="vote-partyName">Party Name</h2>
-                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
-                </div>
-                <div class="col-lg-4 col-md-4 symbol-inp-div">
-                    <i class="fab fa-angellist fa-10x vote-IC"></i>
-                    <h2 class="vote-partyName">Party Name</h2>
-                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
-                </div>
-                <div class="col-lg-4 col-md-4 symbol-inp-div">
-                    <i class="fas fa-universal-access fa-10x vote-IC"></i>
-                    <h2 class="vote-partyName">Party Name</h2>
-                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
-                </div>
-                <div class="col-lg-4 col-md-4 symbol-inp-div">
-                    <i class="far fa-bell fa-10x vote-IC"></i>
-                    <h2 class="vote-partyName">Party Name</h2>
-                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
-                </div>
+                <!-- start -->
+                <% partySymbol.forEach((e)=>{ %>
+                    <div class="col-lg-4 col-md-4 symbol-inp-div">
+                        <% if(e.symbol == "fa-angellist"){ %>
+                            <i class="fab <%=e.symbol%> fa-10x vote-IC"></i>
+                            <% }else{ %>
+                                <i class="fas <%=e.symbol%> fa-10x vote-IC"></i>
+                                <%}%>
+                                    <h2 class="vote-partyName">
+                                        <%=e.partName%>
+                                    </h2>
+                                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
+                    </div>
+
+                    <% }) %>
+
+
+                        <!-- end -->
+
             </div>
         </div>
     </div>
@@ -110,7 +106,6 @@
             </p>
         </footer>
     </section>
-
 
     <!-- jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

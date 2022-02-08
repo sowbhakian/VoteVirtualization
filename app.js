@@ -6,6 +6,7 @@ const app = express();
 const session = require("express-session")
 const flash = require("connect-flash");
 const { Cookie } = require("express-session");
+const e = require("connect-flash");
 
 
 app.set('view engine', 'ejs');
@@ -23,11 +24,16 @@ app.use(flash());
 mongoose.connect("mongodb://localhost:27017/DeployVotes", { useNewUrlParser: true });
 
 //Date-IndexPage-S1
-let finalDateEnroll;
-let finalDateVoting;
+const options = {
+    weekday: 'long',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+};
 const dateSchema = new mongoose.Schema({
-    FinalDateEnroll: String,
-    FinalDateVoting: String
+    votingStart: Date,
+    votingEnd: Date,
+    enrollEnd: Date,
 });
 const FixDate = mongoose.model("Date", dateSchema) //Collection-1
 
@@ -39,8 +45,8 @@ const discussionSchema = new mongoose.Schema({
 const SendMsg = mongoose.model("Discuss", discussionSchema) //Collection-2
 
 //Signup/Login-Login-S3
-let disName;
-let email_Id;
+var disName;
+var email_Id;
 const voterSchema = new mongoose.Schema({
     Name: String,
     mailId: String,
@@ -74,55 +80,21 @@ const EnrollS = mongoose.model("EnrollStatus", voterEnrollmentSchema) //Collecti
 app.get("/", function(req, res) {
 
     // display date
+
+    let finalDateEnroll;
+    let finalDateVoting;
     const today = new Date();
-    const options = {
-        weekday: 'long',
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-    };
     const displaydate = today.toLocaleDateString("en-US", options)
-
-
     FixDate.find({}, (err, output) => {
+        // console.log(output);
         if (!err) {
-            // console.log(output)
-            if (output.length === 0) {
-
-                // enroll last date
-                var endDate = new Date("06/11/2021")
-                endDate.setDate(endDate.getDate());
-                var year = endDate.getFullYear();
-                var mes = endDate.getMonth() + 1;
-                var dia = endDate.getDate();
-                finalDateEnroll = dia + "-" + mes + "-" + year;
-                // console.log(finalDateEnroll)
-
-                // voting last date
-                var endDate = new Date("08/12/2021")
-                var year = endDate.getFullYear();
-                var mes = endDate.getMonth() + 1;
-                var dia = endDate.getDate();
-                finalDateVoting = dia + "-" + mes + "-" + year;
-                // console.log(finalDateVoting)
-
-                const setDate = new FixDate({
-                    FinalDateEnroll: finalDateEnroll,
-                    FinalDateVoting: finalDateVoting
-                })
-                setDate.save();
-
-            } else {
-                output.forEach(element => {
-                    finalDateEnroll = element.FinalDateEnroll;
-                    finalDateVoting = element.FinalDateVoting;
-                });
-
-            }
-
+            // output[0].votingStart
+            finalDateVoting = output[0].votingEnd.toLocaleDateString("en-US", options)
+            finalDateEnroll = output[0].enrollEnd.toLocaleDateString("en-US", options)
             res.render("index", { Displaydate: displaydate, FinalDateEnroll: finalDateEnroll, FinalDateVoting: finalDateVoting, DisName: disName });
         }
     })
+
 
 });
 
@@ -130,7 +102,13 @@ app.get("/enroll", function(req, res) {
     if (disName == undefined) {
         res.redirect("/signin")
     } else {
-        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: " " });
+
+        Nominee.find({}, (err, output) => {
+            if (!err) {
+                // console.log(output);
+                res.render("enroll", { DisName: disName, Email_Id: email_Id, message: " ", partySymbol: output });
+            }
+        })
     }
 });
 
@@ -209,17 +187,20 @@ app.post("/login", function(req, res) {
 });
 
 
-
 app.get("/Discussion", function(req, res) {
-
-    SendMsg.find({}, (err, outArray) => {
-        if (!err) {
-            res.render("discuss", { Messages: outArray, DisName: disName });
-        }
-    })
+    if (disName == undefined) {
+        res.redirect("/signin")
+    } else {
+        SendMsg.find({}, (err, outArray) => {
+            if (!err) {
+                res.render("discuss", { Messages: outArray, DisName: disName });
+            }
+        })
+    }
 });
 
 app.post("/discuss", function(req, res) {
+
     const emailId = req.body.emailid;
     const msg = req.body.message;
 
@@ -235,7 +216,51 @@ app.post("/discuss", function(req, res) {
 
 
 app.get("/vote", function(req, res) {
-    res.render("vote")
+    var Ests;
+    var Vsts;
+    var flag = false;
+    var partySymbol = [];
+    //Status-Name
+    EnrollS.find({}, (err, output) => {
+        // console.log(output);
+        if (!err) {
+            output.forEach(e => {
+                // console.log(e.Votingstatus, e.Enrollstatus, e.email, email_Id, disName);
+                // console.log(e.email, disName);
+                if (e.email === disName) {
+                    Ests = e.Enrollstatus;
+                    Vsts = e.Votingstatus;
+                    flag = true;
+                }
+            });
+            if (output.length == 0)
+                flag = true;
+            if (flag) {
+                Nominee.find({}, (err, output) => {
+                    console.log();
+                    if (!err) {
+                        FixDate.find({}, (er, output1) => {
+                            if (!er) {
+                                endDate = output1[0].votingEnd.toLocaleDateString("en-US", options)
+                                res.render("vote", { DisName: disName, Ests: Ests, Vsts: Vsts, partySymbol: output, endDate: endDate });
+                            }
+                        })
+
+                    }
+                })
+            } else {
+                Nominee.find({}, (err, output) => {
+                    if (!err) {
+                        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Voter Not Enrolled!", partySymbol: output });
+                    }
+                })
+            }
+
+        }
+
+
+
+    })
 });
 
 app.post("/votersInfo", (req, res) => {
@@ -245,34 +270,37 @@ app.post("/votersInfo", (req, res) => {
     var votingstatus = "Not Yet";
     var cheak = true;
 
-    if (aadhar.length == 0) {
-        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters No Aadhar No. voters" });
-    } else if (aadhar.length != 12) {
-        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters wrong Aadhar No." });
-    } else {
-        EnrollS.find({}, { aadharNo: 1 }, (err, output) => {
-            if (!err) {
-                output.forEach(e => {
-                    if (e.aadharNo == aadhar) {
-                        cheak = false;
-                    }
-                });
+    Nominee.find({}, (err, output) => {
 
-                if (cheak) {
-                    const Enrollstatussave = new EnrollS({
-                        aadharNo: aadhar,
-                        email: mailId,
-                        Enrollstatus: Enrollstatus,
-                        Votingstatus: votingstatus
-                    })
-                    Enrollstatussave.save()
-                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Voters" });
-                } else {
-                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters" });
+        if (aadhar.length == 0) {
+            res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters No Aadhar No. voters", partySymbol: output });
+        } else if (aadhar.length != 12) {
+            res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters wrong Aadhar No.", partySymbol: output });
+        } else {
+            EnrollS.find({}, { aadharNo: 1 }, (err, output) => {
+                if (!err) {
+                    output.forEach(e => {
+                        if (e.aadharNo == aadhar) {
+                            cheak = false;
+                        }
+                    });
+
+                    if (cheak) {
+                        const Enrollstatussave = new EnrollS({
+                            aadharNo: aadhar,
+                            email: mailId,
+                            Enrollstatus: Enrollstatus,
+                            Votingstatus: votingstatus
+                        })
+                        Enrollstatussave.save()
+                        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Voters", partySymbol: output });
+                    } else {
+                        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters", partySymbol: output });
+                    }
                 }
-            }
-        })
-    }
+            })
+        }
+    })
 
 
 })
@@ -287,59 +315,120 @@ app.post("/nomineeInfo", (req, res) => {
     var symbol = req.body.symbol;
     cheak = true;
 
-    // Nomineestatussave.save((err) => {
-    //     if (!err) {
-    //         res.redirect("enroll");
-    //         res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Voters" });
-    //     }
-    // })
-
-
     var errormsg;
 
-    if (aadhar.length == 0) {
-        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters No Aadhar No." });
-    } else if (aadhar.length != 12) {
-        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters wrong Aadhar No." });
-    } else {
-        Nominee.find({}, (err, output) => {
-            if (!err) {
+    Nominee.find({}, (err, output1) => {
 
-                output.forEach(e => {
-                    if (e.aadharNo == aadhar) {
-                        cheak = false;
-                        errormsg = "Enrollment Failed! Same Aadhar Number!"
-                    }
-                    if (e.partName == partName) {
-                        cheak = false;
-                        errormsg = "Enrollment Failed! Same Party Name!"
-                    }
-                    if (e.symbol == symbol) {
-                        cheak = false;
-                        errormsg = "Enrollment Failed! Same Party Symbol!"
-                    }
+        if (aadhar.length == 0) {
+            res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters No Aadhar No.", partySymbol: output1 });
+        } else if (aadhar.length != 12) {
+            res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Failed! Voters wrong Aadhar No.", partySymbol: output1 });
+        } else {
+            Nominee.find({}, (err, output) => {
+                if (!err) {
 
-                });
-                console.log(errormsg);
-                if (cheak) {
-                    const Nomineesave = new Nominee({
-                        aadharNo: aadhar,
-                        emailId: mailId,
-                        degree: degree,
-                        address: address,
-                        age: age,
-                        partName: partName,
-                        symbol: symbol
-                    })
-                    Nomineesave.save()
-                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Nominee" });
-                } else {
-                    res.render("enroll", { DisName: disName, Email_Id: email_Id, message: errormsg });
+                    output.forEach(e => {
+                        if (e.aadharNo == aadhar) {
+                            cheak = false;
+                            errormsg = "Enrollment Failed! Same Aadhar Number!"
+                        }
+                        if (e.partName == partName) {
+                            cheak = false;
+                            errormsg = "Enrollment Failed! Same Party Name!"
+                        }
+                        if (e.symbol == symbol) {
+                            cheak = false;
+                            errormsg = "Enrollment Failed! Same Party Symbol!"
+                        }
+
+                    });
+                    // console.log(errormsg);
+                    if (cheak) {
+                        const Nomineesave = new Nominee({
+                            aadharNo: aadhar,
+                            emailId: mailId,
+                            degree: degree,
+                            address: address,
+                            age: age,
+                            partName: partName,
+                            symbol: symbol
+                        })
+                        Nomineesave.save((e) => {
+                            //After saving to render
+                            if (!e) {
+                                Nominee.find({}, (err, out) => {
+                                    if (!err) {
+                                        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: "Enrollment Success Nominee", partySymbol: out });
+                                    }
+                                })
+                            }
+                        });
+
+                    } else {
+                        res.render("enroll", { DisName: disName, Email_Id: email_Id, message: errormsg, partySymbol: output1 });
+                    }
                 }
+            })
+        }
+    })
+})
+
+
+
+
+//Admin
+app.get("/adminLogin", (req, res) => {
+    res.render("adminLogin", { err: "" })
+})
+
+app.get("/adminUpdate", (req, res) => {
+    res.render("adminUpdate", { err: "" });
+})
+
+app.get("/adminDetails", (req, res) => {
+
+    res.render("adminDetails");
+})
+
+app.post("/adminCheck", (req, res) => {
+    var name = req.body.userName;
+    var pass = req.body.password;
+    if (name === "admin") {
+        if (pass === "admin") {
+            res.redirect("/adminDetails")
+        } else {
+            res.render("adminLogin", { err: "Invalid Password!" })
+        }
+    } else {
+        res.render("adminLogin", { err: "Invalid UserID!" })
+    }
+})
+
+app.post("/adminDateCheck", (req, res) => {
+    var vStart = req.body.votingStart
+    var vEnd = req.body.votingEnd
+    var eEnd = req.body.enrollEnd
+
+    if (vStart < vEnd && eEnd < vEnd && vStart < eEnd) {
+
+
+        const dateUpdate = new FixDate({
+            votingStart: vStart,
+            votingEnd: vEnd,
+            enrollEnd: eEnd,
+        });
+
+        FixDate.deleteMany({}, (err, data) => {
+            if (!err) {
+                dateUpdate.save((err) => {
+                    res.render("adminUpdate", { err: "Successfully Updated!" });
+                });
             }
         })
-    }
 
+    } else {
+        res.render("adminUpdate", { err: "Enter the Valid Date!" });
+    }
 })
 
 
