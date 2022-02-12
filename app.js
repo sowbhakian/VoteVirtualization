@@ -7,6 +7,7 @@ const session = require("express-session")
 const flash = require("connect-flash");
 const { Cookie } = require("express-session");
 const e = require("connect-flash");
+const { redirect } = require("express/lib/response");
 
 
 app.set('view engine', 'ejs');
@@ -30,6 +31,9 @@ const options = {
     day: 'numeric',
     year: 'numeric'
 };
+var todayObj = new Date();
+today = todayObj.toLocaleDateString("en-US", options)
+
 const dateSchema = new mongoose.Schema({
     votingStart: Date,
     votingEnd: Date,
@@ -49,14 +53,14 @@ var disName;
 var email_Id;
 const voterSchema = new mongoose.Schema({
     Name: String,
-    mailId: String,
+    mailId: String, //userID - Unique
     password: String,
-    phoneNumber: String
+    phoneNumber: String,
+    UserMailId: String //mailid
 });
 const Voter = mongoose.model("Voter", voterSchema) //Collection-3
 
 //Enroll-details-S4 
-var symbolsList = [];
 const nomineeSchema = new mongoose.Schema({
     aadharNo: Number,
     emailId: String,
@@ -64,7 +68,8 @@ const nomineeSchema = new mongoose.Schema({
     address: String,
     age: Number,
     partName: String,
-    symbol: String
+    symbol: String,
+    count: Number
 })
 const Nominee = mongoose.model("Nominee", nomineeSchema) //Collection-4
 
@@ -73,25 +78,45 @@ const voterEnrollmentSchema = new mongoose.Schema({
     aadharNo: Number,
     email: String,
     Enrollstatus: String,
-    Votingstatus: String
+    Votingstatus: String,
+    count: Number
 });
 const EnrollS = mongoose.model("EnrollStatus", voterEnrollmentSchema) //Collection-5
 
+var DBVstart;
+var DBEend;
+var DBVend;
+
 app.get("/", function(req, res) {
 
-    // display date
+    FixDate.find({}, (err, dates) => {
+        // DBVstart = dates[0].votingStart.toLocaleDateString("en-US", options);
+        DBVstart = dates[0].votingStart;
+        DBEend = dates[0].enrollEnd;
+        DBVend = dates[0].votingEnd;
+        if (todayObj < DBVstart) {
+            // console.log("Enroll Not Open");
+        } else if (DBVstart <= todayObj && todayObj <= DBEend) {
+            console.log("Enroll open");
+        } else if (DBEend < todayObj && todayObj <= DBVend) {
+            console.log("Voting Open");
+        } else if (DBVend < todayObj) {
+            console.log("Voting Close");
+        }
+    })
 
-    let finalDateEnroll;
-    let finalDateVoting;
-    const today = new Date();
-    const displaydate = today.toLocaleDateString("en-US", options)
     FixDate.find({}, (err, output) => {
         // console.log(output);
         if (!err) {
             // output[0].votingStart
-            finalDateVoting = output[0].votingEnd.toLocaleDateString("en-US", options)
-            finalDateEnroll = output[0].enrollEnd.toLocaleDateString("en-US", options)
-            res.render("index", { Displaydate: displaydate, FinalDateEnroll: finalDateEnroll, FinalDateVoting: finalDateVoting, DisName: disName });
+            if (output[0] != undefined) {
+                var endE = DBEend.toLocaleDateString("en-US", options);
+                var endV = DBVend.toLocaleDateString("en-US", options);
+                res.render("index", { Displaydate: today, FinalDateEnroll: endE, FinalDateVoting: endV, DisName: disName });
+            } else {
+                var update = "Need To Be updated!"
+                res.render("index", { Displaydate: displaydate, FinalDateEnroll: update, FinalDateVoting: update, DisName: disName });
+            }
         }
     })
 
@@ -105,7 +130,6 @@ app.get("/enroll", function(req, res) {
 
         Nominee.find({}, (err, output) => {
             if (!err) {
-                // console.log(output);
                 res.render("enroll", { DisName: disName, Email_Id: email_Id, message: " ", partySymbol: output });
             }
         })
@@ -122,6 +146,7 @@ app.post("/signup", function(req, res) {
     const email = _.lowerCase(req.body.email);
     const pass = req.body.password;
     const ph = req.body.phonenumber;
+    const UserMailId = req.body.UserMailId;
     let check = false;
 
     Voter.find({}, (err, output) => {
@@ -138,7 +163,8 @@ app.post("/signup", function(req, res) {
                     Name: name,
                     mailId: email,
                     password: pass,
-                    phoneNumber: ph
+                    phoneNumber: ph,
+                    UserMailId: UserMailId
                 })
 
                 newVoter.save((err) => {
@@ -374,20 +400,59 @@ app.post("/nomineeInfo", (req, res) => {
 })
 
 
-
-
 //Admin
+app.post("/changeToday", (req, res) => {
+    obj = new Date(req.body.today)
+    todayObj = obj;
+    today = obj.toLocaleDateString("en-US", options);
+
+    FixDate.find({}, (err, output) => {
+        if (!err) {
+            if (output[0] != undefined) {
+                var VStart = output[0].votingStart.toLocaleDateString("en-US", options)
+                var VEnd = output[0].votingEnd.toLocaleDateString("en-US", options)
+                var EEnd = output[0].enrollEnd.toLocaleDateString("en-US", options)
+                res.render("adminUpdate", { err: "Today's Date Changed!", VStart: VStart, VEnd: VEnd, EEnd: EEnd, today: today });
+            } else {
+                var update = "Need To Be updated!"
+                res.render("adminUpdate", { err: "", VStart: update, VEnd: update, EEnd: update, today: today });
+
+            }
+        }
+    })
+})
+
 app.get("/adminLogin", (req, res) => {
     res.render("adminLogin", { err: "" })
 })
 
 app.get("/adminUpdate", (req, res) => {
-    res.render("adminUpdate", { err: "" });
+    FixDate.find({}, (err, output) => {
+        if (!err) {
+            if (output[0] != undefined) {
+                var VStart = output[0].votingStart.toLocaleDateString("en-US", options)
+                var VEnd = output[0].votingEnd.toLocaleDateString("en-US", options)
+                var EEnd = output[0].enrollEnd.toLocaleDateString("en-US", options)
+                res.render("adminUpdate", { err: "", VStart: VStart, VEnd: VEnd, EEnd: EEnd, today: today });
+            } else {
+                var update = "Need To Be updated!"
+                res.render("adminUpdate", { err: "", VStart: update, VEnd: update, EEnd: update, today: today });
+
+            }
+        }
+    })
 })
 
 app.get("/adminDetails", (req, res) => {
-
-    res.render("adminDetails");
+    Nominee.find({}, (err, output) => {
+        if (!err) {
+            EnrollS.find({}, (er, output2) => {
+                if (!er) {
+                    res.render("adminDetails", { NList: output, VList: output2 });
+                }
+            })
+        }
+    })
 })
 
 app.post("/adminCheck", (req, res) => {
@@ -421,14 +486,76 @@ app.post("/adminDateCheck", (req, res) => {
         FixDate.deleteMany({}, (err, data) => {
             if (!err) {
                 dateUpdate.save((err) => {
-                    res.render("adminUpdate", { err: "Successfully Updated!" });
+                    FixDate.find({}, (err, output) => {
+
+                        if (output[0] != undefined) {
+                            var VStart = output[0].votingStart.toLocaleDateString("en-US", options)
+                            var VEnd = output[0].votingEnd.toLocaleDateString("en-US", options)
+                            var EEnd = output[0].enrollEnd.toLocaleDateString("en-US", options)
+                            res.render("adminUpdate", { err: "Successfully Updated!", VStart: VStart, VEnd: VEnd, EEnd: EEnd });
+                        } else {
+                            var update = "Need To Be updated!"
+                            res.render("adminUpdate", { err: "Successfully Updated!", VStart: update, VEnd: update, EEnd: update });
+                        }
+                    })
+
                 });
             }
         })
 
     } else {
-        res.render("adminUpdate", { err: "Enter the Valid Date!" });
+        FixDate.find({}, (err, output) => {
+            if (!err) {
+
+                if (output[0] != undefined) {
+                    var VStart = output[0].votingStart.toLocaleDateString("en-US", options)
+                    var VEnd = output[0].votingEnd.toLocaleDateString("en-US", options)
+                    var EEnd = output[0].enrollEnd.toLocaleDateString("en-US", options)
+                    res.render("adminUpdate", { err: "Enter the Valid Date!", VStart: VStart, VEnd: VEnd, EEnd: EEnd });
+                } else {
+                    var update = "Need To Be updated!"
+                    res.render("adminUpdate", { err: "Enter the Valid Date!", VStart: update, VEnd: update, EEnd: update });
+
+                }
+
+            }
+        })
     }
+})
+
+// remove
+app.post("/removeVoter", (req, res) => {
+    var id = req.body.id;
+    EnrollS.deleteOne({ _id: id }, (err) => {
+        if (!err) {
+            Nominee.find({}, (err, output) => {
+                if (!err) {
+                    EnrollS.find({}, (er, output2) => {
+                        if (!er) {
+                            res.render("adminDetails", { NList: output, VList: output2 });
+                        }
+                    })
+                }
+            })
+        }
+    })
+})
+
+app.post("/removeNominee", (req, res) => {
+    var id = req.body.id;
+    Nominee.deleteOne({ _id: id }, (err) => {
+        if (!err) {
+            Nominee.find({}, (err, output) => {
+                if (!err) {
+                    EnrollS.find({}, (er, output2) => {
+                        if (!er) {
+                            res.render("adminDetails", { NList: output, VList: output2 });
+                        }
+                    })
+                }
+            })
+        }
+    })
 })
 
 

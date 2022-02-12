@@ -9,8 +9,9 @@
 
 
     <!-- icons links -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    /> -->
+    <script src="https://kit.fontawesome.com/c0e4752029.js" crossorigin="anonymous"></script>
 
     <!-- google-font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +22,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Passion+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@1&display=swap" rel="stylesheet">
 
     <!-- bootstrap links -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -46,12 +51,9 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <!-- phone view - right  -->
                     <div class="navbar-nav mx-auto text-right">
-                        <a href="adminLogin" class="nav-link nav-link-ltr textinnav ">Login</a>
-                        <a href="adminDetails" class="nav-link nav-link-ltr textinnav ">View Details</a>
-                        <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">update</a>
-                        <a href="#" class="nav-link  ">
-                            <button type="button" class="btn btn-outline-warning">Log Out</button>
-                        </a>
+                        <a href="adminLogin" class="nav-link nav-link-ltr textinnavAdmin ">Login</a>
+                        <a href="adminDetails" class="nav-link nav-link-ltr textinnavAdmin ">View Details</a>
+                        <a href="adminUpdate" class="nav-link nav-link-ltr textinnavAdmin " id="active-underline">update</a>
                         <h6 class="text-light my-auto text-center">
                             <i class="fas fa-user-tie"></i>
                             <p> ... </p>
@@ -63,8 +65,17 @@
     </section>
 
 
-
     <section>
+
+        <!-- MenuBar Icon -->
+        <div class="text-center ">
+            <button class="button-30 text-light bg-danger" type="button" data-toggle="modal" data-target="#signin-Modal"> Existing Dates</button>
+        </div>
+
+        <div class="logOutBTN">
+            <button type="button" class="btn btn-outline-dark">Log Out</button>
+        </div>
+
         <form action="/adminDateCheck" method="post">
             <div class="adminLoginBox ">
                 <h3 class="welcomeAdmin">
@@ -89,15 +100,15 @@
 
                             <div class="login__field">
                                 <p class="adminUpdateInp"> <i class="login__icon fas fa-hourglass-start"></i> Start Date:
-                                    <input type="date" class="login__input" name="votingStart"></p>
+                                    <input type="date" class="login__input" name="votingStart" required></p>
                             </div>
                             <div class="login__field">
                                 <p class="adminUpdateInp"> <i class="login__icon fas fa-hourglass-end"></i> Voting End Date:
-                                    <input type="date" class="login__input" name="votingEnd"></p>
+                                    <input type="date" class="login__input" name="votingEnd" required></p>
                             </div>
                             <div class="login__field">
                                 <p class="adminUpdateInp"> <i class="login__icon fas fa-hourglass-end"></i> Enrollment End Date:
-                                    <input type="date" class="login__input" name="enrollEnd"></p>
+                                    <input type="date" class="login__input" name="enrollEnd" required></p>
                             </div>
 
                             <div class="adminBtn">
@@ -106,6 +117,75 @@
             </div>
         </form>
     </section>
+
+
+    <div class="text-center">
+        <form action="/changeToday" method="post">
+
+            <% if(err == "Today's Date Changed!"){%>
+                <div class="errorDiv">
+                    <div class="alert alert-success bg-success text-light text-center alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                        <strong><%= err%></strong>
+                    </div>
+                </div>
+                <% } %>
+
+                    <div class="login__field">
+                        <p class="adminUpdateInp"> <i class="login__icon fas fa-exchange-alt"></i> Change Today Date:
+                            <input type="date" class="login__input" name="today" required></p>
+                    </div>
+                    <div class="adminBtn mb-5">
+                        <button type="submit" class="btn btn-danger">Change</button>
+                    </div>
+        </form>
+    </div>
+
+
+    <!-- Existing Date -->
+    <article>
+        <div class="modal fade" id="signin-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <!-- Close -->
+                    <div class="modal-header border-bottom-0">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                    </div>
+
+                    <!-- Context -->
+                    <div class="modal-body text-center">
+                        <h2>Exiting Date</h2>
+                        <div class="exitingDate text-center">
+                            <p>
+                                <b class="text-decoration-underline">
+                                    Today's Date:
+                                </b>
+                                <%= today %>.
+                            </p>
+                            <p>
+                                <b>
+                                    Voting Start Date:
+                                </b>
+                                <%= VStart %>.
+                            </p>
+                            <p>
+                                <b>
+                                    Voting End Date:
+                                </b>
+                                <%= VEnd %>.
+                            </p>
+                            <p>
+                                <b>
+                                    Enrollment End Date:
+                                </b>
+                                <%= EEnd%>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </article>
 
     <!-- footer-section -->
     <!-- <section id="footer-section ">

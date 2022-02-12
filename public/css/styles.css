@@ -12,7 +12,7 @@ body {
 
 .navbar-whole-classAdmin {
     background-color: #000000;
-    padding: 1% 5%;
+    padding: 1% 0%;
     background-image: url("https://www.transparenttextures.com/patterns/vichy.png");
     background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
@@ -981,4 +981,32 @@ h5 {
 .adminUpdateInp {
     font-family: 'Concert One';
     font-size: larger;
+}
+
+.removeBTN {
+    border: none;
+    background: none;
+}
+
+.exitingDate b {
+    font-family: 'Acme';
+    color: rgb(185, 0, 0);
+    font-size: larger;
+}
+
+.exitingDate p {
+    font-family: 'Passion One';
+    font-size: larger;
+}
+
+.modal-body h2 {
+    font-family: 'DM Serif Text';
+    margin-bottom: 5%;
+    color: #000268;
+}
+
+.logOutBTN {
+    text-align: right;
+    margin-right: 2%;
+    float: right;
 }

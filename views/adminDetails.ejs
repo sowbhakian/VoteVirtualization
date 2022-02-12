@@ -161,11 +161,8 @@
                     <!-- phone view - right  -->
                     <div class="navbar-nav mx-auto text-right">
                         <a href="adminLogin" class="nav-link nav-link-ltr textinnav ">Login</a>
-                        <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">View Details</a>
+                        <a href="adminDetails" class="nav-link nav-link-ltr textinnav " id="active-underline">View Details</a>
                         <a href="adminUpdate" class="nav-link nav-link-ltr textinnav ">update</a>
-                        <a href="#" class="nav-link  ">
-                            <button type="button" class="btn btn-outline-warning">Log Out</button>
-                        </a>
                         <h6 class="text-light my-auto text-center">
                             <i class="fas fa-user-tie"></i>
                             <p> ... </p>
@@ -183,6 +180,10 @@
     </div>
 
 
+
+    <div class="logOutBTN">
+        <button type="button" class="btn btn-outline-dark">Log Out</button>
+    </div>
     <!-- Voters List -->
     <section id="votersList">
         <div class="adminDetailsDiv ">
@@ -190,32 +191,46 @@
                 <thead>
                     <tr>
                         <th class="column1">S.No.</th>
-                        <th class="column2">E-mail</th>
+                        <th class="column2">UserName</th>
                         <th class="column3">Aadhar No.</th>
                         <th class="column4">Enrollment</th>
                         <th class="column5">Voting</th>
                         <th class="column6">Remove</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="column1">1</td>
-                        <td class="column2">Sowbhakian@gmail.com</td>
-                        <td class="column3">1234 1234 1234</td>
-                        <td class="column4">Done</td>
-                        <td class="column5">Not Done</td>
-                        <td class="column6">Not Done</td>
-                    </tr>
-                    <tr>
-                        <td class="column1">2</td>
-                        <td class="column2">Sowbhakian@gmail.com</td>
-                        <td class="column3">1234 1234 1234</td>
-                        <td class="column4">Done</td>
-                        <td class="column5">Not Done</td>
-                        <td class="column6">Not Done</td>
-                    </tr>
 
-                </tbody>
+                <% i=0%>
+                    <% VList.forEach(e => { %>
+                        <tbody>
+                            <tr>
+                                <td class="column1">
+                                    <%= ++i%>
+                                </td>
+                                <td class="column2">
+                                    <%= e.email%>
+                                </td>
+                                <td class="column3">
+                                    <%= e.aadharNo%>
+                                </td>
+                                <td class="column4">
+                                    <%= e.Enrollstatus%>
+                                </td>
+                                <td class="column5">
+                                    <%= e.Votingstatus%>
+                                </td>
+
+                                <td class="column6">
+                                    <form action="/removeVoter" method="post">
+                                        <button type="submit" class="removeBTN">
+                                            <i class="fas fa-trash-alt text-danger fa-2x"></i>
+                                        </button>
+                                        <input type="hidden" name="id" value="<%=e._id %>">
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <% }) %>
+
             </table>
         </div>
     </section>
@@ -227,31 +242,49 @@
                 <thead>
                     <tr>
                         <th class="column1">S.No.</th>
-                        <th class="column2">E-mail</th>
+                        <th class="column2">UserName</th>
                         <th class="column3">Aadhar No.</th>
-                        <th class="column4">Age</th>
-                        <th class="column5">Party Name</th>
-                        <th class="column6">Party Symbol</th>
+                        <th class="column4">Party Name</th>
+                        <th class="column5">Party Symbol</th>
+                        <th class="column6">Remove</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="column1">1</td>
-                        <td class="column2">Sowbhakian@gmail.com</td>
-                        <td class="column3">1234 1234 1234</td>
-                        <td class="column4">Done</td>
-                        <td class="column5">Not Done</td>
-                        <td class="column6">Not Done</td>
-                    </tr>
-                    <tr>
-                        <td class="column1">2</td>
-                        <td class="column2">Sowbhakian@gmail.com</td>
-                        <td class="column3">1234 1234 1234</td>
-                        <td class="column4">Done</td>
-                        <td class="column5">Not Done</td>
-                        <td class="column6">Not Done</td>
-                    </tr>
 
+                    <% i=0%>
+                        <% NList.forEach(e => { %>
+
+                            <tr>
+                                <td class="column1">
+                                    <%= ++i%>
+                                </td>
+                                <td class="column2">
+                                    <%= e.emailId%>
+                                </td>
+                                <td class="column3">
+                                    <%= e.aadharNo%>
+                                </td>
+                                <td class="column4">
+                                    <%= e.partName%>
+                                </td>
+                                <td class="column5">
+                                    <% if(e.symbol == "fa-angellist"){ %>
+                                        <i class="fab <%=e.symbol%> fa-2x vote-IC"></i>
+                                        <% }else{ %>
+                                            <i class="fas <%=e.symbol%> fa-3x vote-IC"></i>
+                                            <%}%>
+                                </td>
+
+                                <td class="column6">
+                                    <form action="/removeNominee" method="post">
+                                        <button type="submit" class="removeBTN">
+                                            <i class="fas fa-trash-alt text-danger fa-2x"></i>
+                                        </button>
+                                        <input type="hidden" name="id" value="<%=e._id %>">
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
                 </tbody>
             </table>
         </div>

@@ -53,10 +53,19 @@
 
                     <div class="col-lg-6 col-md-6 col-sm-12 ">
                         <h2 class="sts-msg voteMsgLt">Enrollment Status :
-                            <%=Ests%>
+                            <% if(Ests == undefined){ %>
+                                Not Done
+                                <% }else{ %>
+                                    <%=Ests%>
+                                        <% } %>
                         </h2>
                         <h2 class="sts-msg voteMsgLt">Voting Status :
-                            <%=Vsts%>
+                            <% if(Ests == undefined){ %>
+                                Not Done
+                                <% }else{ %>
+                                    <%=Vsts%>
+                                        <% } %>
+
                         </h2>
                     </div>
                 </div>
@@ -86,7 +95,11 @@
                                     <h2 class="vote-partyName">
                                         <%=e.partName%>
                                     </h2>
-                                    <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
+                                    <% if(Ests == undefined){ %>
+                                        <button type="button" class="btn btn-primary btn-lg vote-btn" disabled>VOTE</button>
+                                        <% }else{%>
+                                            <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
+                                            <% } %>
                     </div>
 
                     <% }) %>

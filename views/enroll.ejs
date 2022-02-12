@@ -53,7 +53,7 @@
                     <!-- phone view - right  -->
                     <div class="navbar-nav mx-auto text-right">
                         <a href="/" class="nav-link nav-link-ltr textinnav ">Home</a>
-                        <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">Enroll</a>
+                        <a href="/enroll" class="nav-link nav-link-ltr textinnav " id="active-underline">Enroll</a>
                         <a href="/signin" class="nav-link nav-link-ltr textinnav ">Login</a>
                         <a href="/Discussion" class="nav-link nav-link-ltr textinnav ">Discussion</a>
                         <h6 class="text-light my-auto">
@@ -227,13 +227,23 @@
                                     Voter Not Enrolled!
                                         </button>
                                 </div>
-                                <% } %>
-
-                                    <div class="border border-light bottom-btn-n  enr-borderCurve2" id="enr-start">
-                                        <a href="/vote">
-                                            <p class="enrollBtn2 text-light" type=submit>Click to VOTE</p>
-                                        </a>
+                                <% }else if(message == "Voting will be Opend Soon!"){ %>
+                                    <div class="popup" id="popupmsgFail">
+                                        <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                        <div class="text-right">
+                                            <i class="far fa-times-circle text-light float-right"></i>
+                                        </div>
+                                        Voting will be Opend Soon!
+                                            </button>
                                     </div>
+
+                                    <% } %>
+
+                                        <div class="border border-light bottom-btn-n  enr-borderCurve2" id="enr-start">
+                                            <a href="/vote">
+                                                <p class="enrollBtn2 text-light" type=submit>Click to VOTE</p>
+                                            </a>
+                                        </div>
                         </h3>
                     </div>
                 </div>
