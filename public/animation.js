@@ -108,6 +108,7 @@ function messageHide() {
 }
 
 
+
 // admin Nominee & Voters Toggler
 function nomineeDetails() {
     $("#votersList").addClass("deactive")

@@ -31,6 +31,12 @@
     <link rel="stylesheet" href="css/styles.css">
 
 
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+
 </head>
 
 <body class="vote-body">
@@ -46,7 +52,11 @@
 
                     <div class="col-lg-6 col-md-6 col-sm-12 ">
                         <h2 class="sts-msg voteMsgRt ">Ends on -
-                            <%= endDate%>
+                            <% if(endDate == undefined){%>
+                                Updated Soon!
+                                <%}else{%>
+                                    <%= endDate%>
+                                        <% } %>
                         </h2>
                         <h2 class="sts-msg voteMsgRt"> 09:00 AM-06:00 PM</h2>
                     </div>
@@ -70,9 +80,10 @@
                     </div>
                 </div>
                 <div class="vote-return">
-                    <a href="/">
-                        <button type="button" class="btn btn-lg btn-outline-light">Return Home <i class="fas fa-angle-double-right"></i></button>
-                    </a>
+                    <form action="/">
+                        <input type="hidden" value="<%=userid%>">
+                        <button type="submit" class="btn btn-lg btn-outline-light">Return Home <i class="fas fa-angle-double-right"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -82,34 +93,108 @@
 
         <h1 class="voting-title"> Vote Your Candidate</h1>
 
-        <div class="border border-dark voting-iconDiv">
-            <div class="row text-center">
-                <!-- start -->
-                <% partySymbol.forEach((e)=>{ %>
-                    <div class="col-lg-4 col-md-4 symbol-inp-div">
-                        <% if(e.symbol == "fa-angellist"){ %>
-                            <i class="fab <%=e.symbol%> fa-10x vote-IC"></i>
-                            <% }else{ %>
-                                <i class="fas <%=e.symbol%> fa-10x vote-IC"></i>
-                                <%}%>
-                                    <h2 class="vote-partyName">
-                                        <%=e.partName%>
-                                    </h2>
-                                    <% if(Ests == undefined){ %>
-                                        <button type="button" class="btn btn-primary btn-lg vote-btn" disabled>VOTE</button>
-                                        <% }else{%>
-                                            <button type="button" class="btn btn-primary btn-lg vote-btn">VOTE</button>
-                                            <% } %>
-                    </div>
 
-                    <% }) %>
-
-
-                        <!-- end -->
-
+        <% if(error == "Voted Successfully!") {%>
+            <div class="alert alert-success text-center alert-dismissible border border-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                <b><%= error%></b>
             </div>
-        </div>
+            <% } %>
+
+                <% if(error == "Wrong Party Name!" || error =="Wrong Aadhar Number!") {%>
+                    <div class="alert alert-danger text-center alert-dismissible border border-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                        <b><%= error%></b>
+                    </div>
+                    <% } %>
+
+
+
+
+                        <div class="border border-dark voting-iconDiv">
+                            <div class="row text-center">
+
+                                <!-- start -->
+                                <% partySymbol.forEach((e)=>{ %>
+                                    <div class="col-lg-4 col-md-4 symbol-inp-div">
+                                        <% if(e.symbol == "fa-angellist"){ %>
+                                            <i class="fab <%=e.symbol%> fa-10x vote-IC"></i>
+                                            <% }else{ %>
+                                                <i class="fas <%=e.symbol%> fa-10x vote-IC"></i>
+                                                <%}%>
+                                                    <h2 class="vote-partyName">
+                                                        <%=e.partName%>
+                                                    </h2>
+                                                    <% if(Ests == undefined){ %>
+                                                        <button type="button" class="btn btn-primary btn-lg vote-btn" disabled>VOTE</button>
+                                                        <% }else{%>
+
+                                                            <form action="/VottingProcess" method="post" id="formAddUser">
+                                                                <input type="hidden" name="partyName" value="<%=e.partName%>">
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Vote</button>
+
+                                                                <!--Modal: modalPush-->
+                                                                <article>
+                                                                    <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-notify modal-info" role="document">
+                                                                            <!--Content-->
+                                                                            <div class="modal-content text-center">
+                                                                                <!--Header-->
+                                                                                <div class="modal-header d-flex justify-content-center">
+                                                                                    <p class="heading">Enter Your Details To Conform Your Vote</p>
+                                                                                </div>
+
+                                                                                <!--Body-->
+                                                                                <div class="modal-body">
+
+                                                                                    <i class="fas fa-bell fa-4x animated rotateIn mb-4"></i>
+
+                                                                                    <div class="login__field">
+                                                                                        <p class="adminUpdateInp">Aadhar No:</p>
+                                                                                        <input name="aadhar" required class="login__inputVote" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="12">
+                                                                                    </div>
+                                                                                    <div class="login__field">
+                                                                                        <p class="adminUpdateInp">Enter Party Name<i> (Caps Only!) </i>:</p>
+                                                                                        <input name="partyName" required class="login__inputVote" style="text-transform:uppercase">
+                                                                                    </div>
+
+                                                                                </div>
+
+                                                                                <!--Footer-->
+                                                                                <div class="modal-footer flex-center">
+                                                                                    <button type="submit" class="btn btn-success removeBTN">
+                                                                        <b>
+                                                                            Vote
+                                                                        </b>
+                                                                    </button>
+                                                                                    <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Cancle</a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--/.Content-->
+                                                                        </div>
+                                                                    </div>
+                                                                </article>
+
+
+                                                                <!-- <button type="button" class="btn btn-primary btn-lg vote-btn" form="formAddUser" onclick="checker('<%=e.partName%>')">VOTE</button> -->
+                                                            </form>
+
+                                                            <% } %>
+                                    </div>
+
+                                    <% }) %>
+
+
+                                        <!-- end -->
+
+                            </div>
+                        </div>
     </div>
+
+
+    <!-- Button trigger modal-->
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Launch modal</button> -->
+
 
 
     <!-- footer-section -->
@@ -120,10 +205,18 @@
         </footer>
     </section>
 
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
     <!-- jquery  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="animation.js"></script>
-
 </body>
 
 </html>

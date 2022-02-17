@@ -43,10 +43,25 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <!-- phone view - right  -->
                     <div class="navbar-nav mx-auto text-right">
+                        <!-- home -->
                         <a href="/" class="nav-link nav-link-ltr textinnav ">Home</a>
-                        <a href="/enroll" class="nav-link nav-link-ltr textinnav ">Enroll</a>
+                        <!-- Enroll -->
+                        <form action="/enroll" method="post">
+                            <input type="hidden" name="userid" name="userid">
+                            <button type="submit" class="removeBTN">
+                                <a class="nav-link nav-link-ltr textinnav ">Enroll</a>                                
+                            </button>
+                        </form>
+                        <!-- Login -->
                         <a href="/signin" class="nav-link nav-link-ltr textinnav ">Login</a>
-                        <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">Discussion</a>
+                        <!-- Discussion -->
+                        <form action="/Discussion" method="post">
+                            <input type="hidden" name="userid" name="userid">
+                            <button type="submit" class="removeBTN">
+                                <div class="nav-link nav-link-ltr textinnav " id="active-underline">Discussion</div>
+                            </button>
+                        </form>
+
                         <h6 class="text-light my-auto">
                             <i class="fas fa-user-tie"></i>
                             <%= DisName %>
@@ -103,10 +118,10 @@
                                     <h4>Post Your Queries</h4>
                                 </div>
                                 <div class="d-flex flex-column text-center ">
-                                    <form action="/discuss" method="POST">
+                                    <form action="/discuss" method="post">
 
                                         <div class="form-group ">
-                                            <input type="hidden" name="emailid" value="<%= DisName %>"> </input>
+                                            <input type="hidden" name="userid" name="userid">
                                             <textarea rows="4 " class="form-control " id="message " placeholder="Message " name="message" required></textarea>
                                         </div>
 

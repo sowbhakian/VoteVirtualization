@@ -52,13 +52,32 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <!-- phone view - right  -->
                     <div class="navbar-nav mx-auto text-right">
-                        <a href="/" class="nav-link nav-link-ltr textinnav ">Home</a>
-                        <a href="/enroll" class="nav-link nav-link-ltr textinnav " id="active-underline">Enroll</a>
+                        <!-- home -->
+                        <form action="/">
+                            <button type="submit" class="removeBTN">
+                            <div class="nav-link nav-link-ltr textinnav ">Home</div>
+                            </button>
+                        </form>
+                        <!-- Enroll -->
+                        <form action="/enroll" method="post">
+                            <button type="submit" class="removeBTN">
+                                <input type="hidden" name="userid" name="userid">
+                                <a class="nav-link nav-link-ltr textinnav"  id="active-underline">Enroll</a>                                
+                            </button>
+                        </form>
+                        <!-- Login -->
                         <a href="/signin" class="nav-link nav-link-ltr textinnav ">Login</a>
-                        <a href="/Discussion" class="nav-link nav-link-ltr textinnav ">Discussion</a>
+                        <!-- Discussion -->
+                        <form action="/Discussion" method="post">
+                            <input type="hidden" name="userid" name="userid">
+                            <button type="submit" class="removeBTN">
+                                <a class="nav-link nav-link-ltr textinnav ">Discussion</a>
+                            </button>
+                        </form>
+
                         <h6 class="text-light my-auto">
-                            <i class="fas fa-user-tie"></i>
-                            <%= DisName %>
+                            <i class="fas fa-user-tie">
+                            <%= DisName %></i>
                         </h6>
                     </div>
                 </div>
@@ -102,47 +121,49 @@
                                     Enrollment Successfully! 
                                 </button>
                         </div>
-                        <% } %>
-
-                            <% if(message == "Enrollment Failed! Voters") {%>
-                                <div class="popup" id="popupmsgFail">
-                                    <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                        <% }else if(message == "Enrollment Failed! Voters") {%>
+                            <div class="popup" id="popupmsgFail">
+                                <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
                                 <div class="text-right">
                                     <i class="far fa-times-circle text-light float-right"></i>
                                 </div>
                                     Same Aadhar Number Enrollment Failed!
                                     </button>
-                                </div>
-                                <% } %>
-
-
-                                    <% if(message == "Enrollment Failed! Voters No Aadhar No. voters") {%>
-                                        <div class="popup" id="popupmsgFail">
-                                            <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                            </div>
+                            <% }else if(message == "Enrollment Failed! Voters No Aadhar No. voters") {%>
+                                <div class="popup" id="popupmsgFail">
+                                    <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
                                 <div class="text-right">
                                     <i class="far fa-times-circle text-light float-right"></i>
                                 </div>
                                 No Aadhar Number Enrollment Failed!
                                     </button>
-                                        </div>
-                                        <% } %>
-
-                                            <% if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
-                                                <div class="popup" id="popupmsgFail">
-                                                    <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                </div>
+                                <% }else if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
+                                    <div class="popup" id="popupmsgFail">
+                                        <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
                                     <div class="text-right">
                                         <i class="far fa-times-circle text-light float-right"></i>
                                     </div>
                                     Enrollment Failed! Voters wrong Aadhar No.
                                         </button>
-                                                </div>
-                                                <% } %>
+                                    </div>
+                                    <% }else if(message == "You have Already Enrolled") {%>
+                                        <div class="popup" id="popupmsgFail">
+                                            <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                    <div class="text-right">
+                                        <i class="far fa-times-circle text-light float-right"></i>
+                                    </div>
+                                    You have Already Enrolled!
+                                        </button>
+                                        </div>
+                                        <% } %>
 
-                                                    <div class="ennroll-btn-pad">
-                                                        <div class="border border-light enr-borderCurve" id="heading-button1">
-                                                            <p class="enrollBtn" onclick="enrollshow('voters')">Voters</p>
-                                                        </div>
-                                                    </div>
+                                            <div class="ennroll-btn-pad">
+                                                <div class="border border-light enr-borderCurve" id="heading-button1">
+                                                    <p class="enrollBtn" onclick="enrollshow('voters')">Voter</p>
+                                                </div>
+                                            </div>
                 </h3>
 
                 <h3>Click NOMINEE button to Enroll as CANDIDATE:</h3>
@@ -156,58 +177,67 @@
                                 <%= message %>
                             </button>
                     </div>
-                    <% } %>
-
-                        <% if(message == "Enrollment Failed! Same Aadhar Number!" || message =="Enrollment Failed! Same Party Name!" || message =="Enrollment Failed! Same Party Symbol!") {%>
-                            <div class="popup" id="popupmsgFail">
-                                <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                    <% } else if(message == "Enrollment Failed! Same Aadhar Number!" || message =="Enrollment Failed! Same Party Name!" || message =="Enrollment Failed! Same Party Symbol!") {%>
+                        <div class="popup" id="popupmsgFail">
+                            <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
                             <div class="text-right">
                                 <i class="far fa-times-circle text-light float-right"></i>
                             </div>
                                 <%= message %>
                                 </button>
-                            </div>
-                            <% } %>
-
-                                <% if(message == "Enrollment Failed! Voters No Aadhar No.") {%>
-                                    <div class="popup" id="popupmsgFail">
-                                        <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                        </div>
+                        <% }else if(message == "Enrollment Failed! Voters No Aadhar No.") {%>
+                            <div class="popup" id="popupmsgFail">
+                                <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
                                         <div class="text-right">
                                             <i class="far fa-times-circle text-light float-right"></i>
                                         </div>
                                         No Aadhar Number Enrollment Failed!
                                             </button>
-                                    </div>
-                                    <% } %>
-
-                                        <% if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
-                                            <div class="popup" id="popupmsgFail">
-                                                <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                            </div>
+                            <% }else if(message == "Enrollment Failed! Voters wrong Aadhar No.") {%>
+                                <div class="popup" id="popupmsgFail">
+                                    <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
                                             <div class="text-right">
                                                 <i class="far fa-times-circle text-light float-right"></i>
                                             </div>
                                             Enrollment Failed! Voters wrong Aadhar No.
                                                 </button>
-                                            </div>
-                                            <% } %>
-
-
-                                                <% if(message == "Enrollment Failed! Same PART NAME!") {%>
-                                                    <div class="popup" id="popupmsgFail">
-                                                        <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                </div>
+                                <% }else if(message == "Enrollment Failed! Same PART NAME!") {%>
+                                    <div class="popup" id="popupmsgFail">
+                                        <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
                                             <div class="text-right">
                                                 <i class="far fa-times-circle text-light float-right"></i>
                                             </div>
                                             Enrollment Failed! Same PART NAME!
                                                 </button>
-                                                    </div>
-                                                    <% } %>
+                                    </div>
+                                    <% }else if(message == "Enrollement already Done!") {%>
+                                        <div class="popup" id="popupmsgFail">
+                                            <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                            <div class="text-right">
+                                                <i class="far fa-times-circle text-light float-right"></i>
+                                            </div>
+                                            Enrollement already Done!
+                                                </button>
+                                        </div>
+                                        <% }else if(message == "You Must Enroll as the Voter!") {%>
+                                            <div class="popup" id="popupmsgFail">
+                                                <button type="button" class="btn btn-danger btn-block message_btn " onclick="messageHide()">
+                                            <div class="text-right">
+                                                <i class="far fa-times-circle text-light float-right"></i>
+                                            </div>
+                                            You Must Enroll as the Voter!
+                                                </button>
+                                            </div>
+                                            <% } %>
 
-                                                        <div class="ennroll-btn-pad">
-                                                            <div class="border border-light enr-borderCurve bottom-btn-n" id="heading-button2">
-                                                                <p class="enrollBtn" onclick="enrollshow('nominee')">Nominee</p>
-                                                            </div>
-                                                        </div>
+                                                <div class="ennroll-btn-pad">
+                                                    <div class="border border-light enr-borderCurve bottom-btn-n" id="heading-button2">
+                                                        <p class="enrollBtn" onclick="enrollshow('nominee')">Nominee</p>
+                                                    </div>
+                                                </div>
 
             </div>
 
@@ -240,9 +270,14 @@
                                     <% } %>
 
                                         <div class="border border-light bottom-btn-n  enr-borderCurve2" id="enr-start">
-                                            <a href="/vote">
-                                                <p class="enrollBtn2 text-light" type=submit>Click to VOTE</p>
-                                            </a>
+                                            <form action="/vote" method="post">
+                                                <input type="hidden" name="userid" value="<%=userid%>">
+                                                <p>
+                                                    <button type="submit" class="enrollBtn2 text-light removeBTN">
+                                                        Click to VOTE
+                                                    </button>
+                                                </p>
+                                            </form>
                                         </div>
                         </h3>
                     </div>
@@ -277,7 +312,7 @@
                 <p class="heading-n-v">Enrollment for Nominee</p>
                 <div class="enr-input-body bg-white">
                     <form action="/nomineeInfo" method="POST">
-                        <input type="hidden" name="emailid" value="<%= DisName %>">
+                        <input type="hidden" name="userid" value="<%=userid%>">
                         <!-- part-display -->
                         <p id="enr-part-head" class="enr-part-cls">Person Details</p>
                         <div class="row btn-part-display">
@@ -297,7 +332,7 @@
                                 <input type="number" name="aadhar" class="form-control" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="12">
                             </div>
 
-                            <input type="hidden" class="form-control" name="emailId" value="<%=Email_Id%>" required>
+                            <input type="hidden" class="form-control" name="emailId" value="<%=userid%>" required>
 
                             <div class="form-row">
                                 <label>Degree Qualification</label>
@@ -365,8 +400,8 @@
             <section id="voters" class="deactive">
                 <p class="heading-n-v">Enrollment for Voters</p>
                 <div class="enr-input-body bg-white">
-                    <form action="/votersInfo" method="POST">
-                        <input type="hidden" name="emailid" value="<%= DisName %>">
+                    <form action="/votersInfo" method="post">
+                        <input type="hidden" name="userid" value="<%=userid%>">
                         <div id="part1">
                             <div class="form-row">
                                 <label>Aadhar Number</label>

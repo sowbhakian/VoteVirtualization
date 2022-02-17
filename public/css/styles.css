@@ -878,6 +878,19 @@ h5 {
     text-align: center;
 }
 
+.login__inputVote {
+    border: none;
+    border-bottom: 2px solid #910000;
+    border-bottom: 2px solid #af0000;
+    background: none;
+    padding: 10px;
+    padding-left: 24px;
+    font-weight: 700;
+    width: 75%;
+    transition: .2s;
+    text-align: center;
+}
+
 .adminLoginBox {
     text-align: center;
     padding: 5% 20%
@@ -1009,4 +1022,10 @@ h5 {
     text-align: right;
     margin-right: 2%;
     float: right;
+}
+
+.inpbox {
+    border-top: #000000;
+    border-left: #000000;
+    border-right: #000000;
 }

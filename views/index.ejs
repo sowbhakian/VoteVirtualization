@@ -50,10 +50,23 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <!-- phone view - right  -->
                     <div class="navbar-nav mx-auto text-right">
-                        <a href="#" class="nav-link nav-link-ltr textinnav " id="active-underline">Home</a>
-                        <a href="/enroll" class="nav-link nav-link-ltr textinnav ">Enroll</a>
+                        <!-- home -->
+                        <a href="/" class="nav-link nav-link-ltr textinnav " id="active-underline">Home</a>
+                        <!-- Enroll -->
+                        <form action="/enroll" method="post">
+                            <button type="submit" class="removeBTN">
+                                <a class="nav-link nav-link-ltr textinnav ">Enroll</a>                                
+                            </button>
+                        </form>
+                        <!-- Login -->
                         <a href="/signin" class="nav-link nav-link-ltr textinnav ">Login</a>
-                        <a href="/Discussion" class="nav-link nav-link-ltr textinnav ">Discussion</a>
+                        <!-- Discussion -->
+                        <form action="/Discussion" method="post">
+                            <button type="submit" class="removeBTN">
+                                <a class="nav-link nav-link-ltr textinnav ">Discussion</a>
+                            </button>
+                        </form>
+
                         <h6 class="text-light my-auto">
                             <i class="fas fa-user-tie"></i>
                             <%= DisName %>
